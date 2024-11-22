@@ -1,4 +1,4 @@
-package resources;
+package objects;
 
 import java.time.Instant;
 
@@ -10,11 +10,13 @@ public class DepartureEvent implements Event {
     private final Instant arrivalTime;
     private final Instant serviceTime;
     private final String chargeType;
-    public DepartureEvent(Instant stamp, Instant arrivalTime, Instant serviceTime, String chargeType){
+    private final String status; // Explains if the car was fully charged, thrown out due to impatience, etc. There are three statuses: Uncharged, Partially Charged and Fully Charged
+    public DepartureEvent(Instant stamp, Instant arrivalTime, Instant serviceTime, String chargeType, String status){
         this.timestamp = stamp;
         this.arrivalTime = arrivalTime;
         this.serviceTime = serviceTime;
         this.chargeType = chargeType;
+        this.status = status;
     }
 
     @Override
@@ -24,4 +26,5 @@ public class DepartureEvent implements Event {
     public Instant getArrivalTime() { return arrivalTime; }
     public Instant getServiceTime() { return serviceTime; }
     public String getChargeType() { return chargeType; }
+    public String getStatus() { return status; }
 }

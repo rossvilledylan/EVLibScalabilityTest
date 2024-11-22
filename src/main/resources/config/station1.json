@@ -1,0 +1,20 @@
+{
+	"name": "Miami",
+	"fastChargers": 4,
+	"slowChargers": 4,
+	"energySources": [
+		"Geothermal",
+		"Nonrenewable",
+		"Wind",
+		"Wave"
+	],
+	"energyAmounts": [
+		150000,
+		150000,
+		150000,
+		150000
+	],
+	"arrivalRate": 13,
+	"fastChargingRate": 43000.0,
+	"slowChargingRate": 3000.0
+}

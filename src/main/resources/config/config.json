@@ -1,0 +1,11 @@
+{
+	"startTimeHr": 8,
+	"startTimeMin": 0,
+	"startTimeSec": 0,
+	"endTimeHr": 22,
+	"endTimeMin": 0,
+	"endTimeSec": 0,
+	"configFiles": [
+		"station1.json"
+	]
+}

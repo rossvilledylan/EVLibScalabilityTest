@@ -1,5 +1,8 @@
 package org.example;
-import resources.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
+import java.io.*;
+import objects.*;
 
 import java.time.Instant;
 import java.util.PriorityQueue;
@@ -29,10 +32,49 @@ public class StationSimulator {
     private static final Random random = new Random();
 
     //Temporary, will be implemented into stats attribute somehow
-    int fastBalk = 0;
-    int slowBalk = 0;
+    StationStats sS = new StationStats();
+
+    public StationSimulator(String configFile, GlobalTime gT){
+        this.gT = gT;
+        stationTime = gT.getStartInstant();
+        try {
+            InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("config/"+configFile);
+            if(inputStream == null){
+                throw new IOException("Station config file not found in resources");
+            }
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode rootNode = mapper.readTree(inputStream);
+            fastChargers = rootNode.get("fastChargers").asInt();
+            slowChargers = rootNode.get("slowChargers").asInt();
+            String[] kinds = new String[fastChargers + slowChargers];
+            for (int i = 0; i < fastChargers; i++)
+                kinds[i] = "fast";
+            for (int i = fastChargers; i < kinds.length; i++)
+                kinds[i] = "slow";
+            String[] sources = rootNode.get("energySources").traverse(mapper).readValueAs(String[].class);
+            double[] enAm = rootNode.get("energyAmounts").traverse(mapper).readValueAs(double[].class);
+            double[][] energyAmount = new double[sources.length][5];
+            for (int i = 0; i < sources.length; i++)
+                for (int j = 0; j < 5; j++)
+                    energyAmount[i][j] = enAm[i];
+            station = new ChargingStation(rootNode.get("name").asText(), kinds, sources, energyAmount);
+            for (int i = 0; i < sources.length; i++)
+                station.setSpecificAmount(sources[i],enAm[i]);
+            station.setChargingRateFast(rootNode.get("fastChargingRate").asInt());
+            station.setChargingRateSlow(rootNode.get("slowChargingRate").asInt());
+            stationSetup();
+
+            GenEvent c = new GenEvent(gT.getStartInstant(), rootNode.get("arrivalRate").asInt());
+            eventQueue.add(c);
+            eventLoop();
+
+        } catch(IOException e){
+            System.out.println("The requested station file does not exist");
+        }
+    }
 
 
+    //StationSimulator constructor for if there is a specific set of values you want passed
     public StationSimulator(String name, int[] types, String[] sources, double[][] energyAmount, double arrivalRate, GlobalTime gT){ //Can pass arguments now, I guess
         this.gT = gT;
         stationTime = gT.getStartInstant(); //Set the station's current time
@@ -66,6 +108,26 @@ public class StationSimulator {
                 handleArrivalEvent((ArrivalEvent) e);
             } else if (e instanceof DepartureEvent){
                 handleDepartureEvent((DepartureEvent) e);
+                switch(((DepartureEvent) e).getStatus()){
+                    case "Uncharged":
+                        if(((DepartureEvent) e).getChargeType().equals("fast"))
+                            sS.setNumNoFastCharges(sS.getNumNoFastCharges()+1);
+                        else if(((DepartureEvent) e).getChargeType().equals("slow"))
+                            sS.setNumNoSlowCharges(sS.getNumNoSlowCharges()+1);
+                        break;
+                    case "Partially Charged":
+                        if(((DepartureEvent) e).getChargeType().equals("fast"))
+                            sS.setNumPartialFastCharges(sS.getNumPartialFastCharges()+1);
+                        else if(((DepartureEvent) e).getChargeType().equals("slow"))
+                            sS.setNumPartialSlowCharges(sS.getNumPartialSlowCharges()+1);
+                        break;
+                    case "Fully Charged":
+                        if(((DepartureEvent) e).getChargeType().equals("fast"))
+                            sS.setNumFullFastCharges(sS.getNumFullFastCharges()+1);
+                        else if(((DepartureEvent) e).getChargeType().equals("slow"))
+                            sS.setNumFullSlowCharges(sS.getNumFullSlowCharges()+1);
+                        break;
+                }
                 System.out.println("A Car requesting " + ((DepartureEvent) e).getChargeType() + " arrived at " + ((DepartureEvent) e).getArrivalTime() + ", was Serviced at " + ((DepartureEvent) e).getServiceTime() + " and left at " + e.getTimestamp() + ". The station time is " + this.stationTime + " and the global end time is " + gT.getEndInstant());
             }
             System.out.println("There are " + fastQueue.size() + " cars in the fast queue and " + fastInUse + " cars being fast charged");
@@ -73,8 +135,7 @@ public class StationSimulator {
             System.out.println(eventQueue);
             System.out.println();
         }
-        System.out.println("There were " + fastBalk + " fast charging events that got impatient.");
-        System.out.println("There were " + slowBalk + " slow charging events that got impatient.");
+        sS.printStats();
         station.genReport("C:/School/Master's Project/OurProject/EVLibScalabilityTest/report.txt");
     }
 
@@ -136,7 +197,7 @@ public class StationSimulator {
                 ArrivalEvent a = fastQueue.peek();
                 while(!fastQueue.isEmpty() && !a.getTimestamp().plusSeconds(600).isAfter(this.stationTime)) {
                     fastQueue.remove();
-                    fastBalk++;
+                    sS.setNumFaskBalks(sS.getNumFaskBalks() + 1);
                     if(!fastQueue.isEmpty()){
                         a = fastQueue.peek();
                     }
@@ -159,7 +220,7 @@ public class StationSimulator {
                 ArrivalEvent a = slowQueue.peek(); // Peek to check the head without removing it
                 while (!slowQueue.isEmpty() && !a.getTimestamp().plusSeconds(1800).isAfter(this.stationTime)) {
                     slowQueue.remove(); // Remove only if the condition is not satisfied
-                    slowBalk++;
+                    sS.setNumSlowBalks(sS.getNumSlowBalks()+1);
                     if (!slowQueue.isEmpty()) {
                         a = slowQueue.peek(); // Update 'a' with the next event
                     }
@@ -180,14 +241,42 @@ public class StationSimulator {
 
     public void startCharge(ArrivalEvent a){
         ChargingEvent ev = new ChargingEvent(station, a.getVeh(),a.getChargeDesired(),a.getChargeType());
-        //Will handle checking station energy later; for now, naievete
-        //Doing this to avoid preprocessing
+
+        //This is a very simplified version of ChargingEvent.java's energy checking formula. Cars never ask for more
+        //energy than they can hold, so it is unnecessary to check.
+        if (a.getChargeDesired() < station.getTotalEnergy()) {
+            ev.setEnergyToBeReceived(a.getChargeDesired());
+        } else {
+            ev.setEnergyToBeReceived(station.getTotalEnergy());
+        }
+        if(ev.getEnergyToBeReceived() == 0) {
+            DepartureEvent b = new DepartureEvent(a.getTimestamp(), a.getTimestamp(), this.stationTime, a.getChargeType(), "Uncharged");
+            eventQueue.add(b);
+            return;
+        }
+
         ev.setEnergyToBeReceived(a.getChargeDesired());
         ev.setChargingTime(((long) (ev.getEnergyToBeReceived() * 3600000 / station.getChargingRateFast())));
         ev.setCost(station.calculatePrice(ev));
         ev.setCondition("ready");
-        station.setSpecificAmount("wind",station.getMap().get("wind")-ev.getEnergyToBeReceived());
-        DepartureEvent b = new DepartureEvent(calcChargingTime(a.getChargeDesired(),ev.getKindOfCharging()), a.getTimestamp(), this.stationTime, a.getChargeType());
+
+        //station.setSpecificAmount("Wind",station.getMap().get("Wind")-ev.getEnergyToBeReceived());
+        double sdf;
+        sdf = a.getChargeDesired();
+        //Determine which source of energy the car receives
+        for (String s : station.getSources()) {
+            if (sdf < station.getMap().get(s)) {
+                double ert = station.getMap().get(s) - sdf;
+                station.setSpecificAmount(s, ert);
+                break;
+            } else {
+                sdf -= station.getMap().get(s);
+                station.setSpecificAmount(s, 0);
+            }
+        }
+
+
+        DepartureEvent b = new DepartureEvent(calcChargingTime(a.getChargeDesired(),ev.getKindOfCharging()), a.getTimestamp(), this.stationTime, a.getChargeType(), ev.getEnergyToBeReceived() < a.getChargeDesired() ? "Partially Charged" : "Fully Charged");
         eventQueue.add(b);
         station.assignCharger(ev);
         ev.execution();
@@ -205,8 +294,6 @@ public class StationSimulator {
         station.setAutomaticUpdateMode(false);
         station.updateStorage();
         station.setTimeofExchange(5000);
-        station.setChargingRateFast(43000.0); //This is the *slowest* option provided by the simulator. In Watts
-        station.setChargingRateSlow(3000.0); //This is the *slowest* option provided by the simulator, in Watts
         station.setDisChargingRate(0.1);
         station.setInductiveChargingRate(0.001);
 
