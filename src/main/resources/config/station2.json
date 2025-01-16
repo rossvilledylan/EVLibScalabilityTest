@@ -15,6 +15,7 @@
     150000
   ],
   "arrivalRate": 30,
+  "arrivalEq": "x + 7",
   "fastChargingRate": 43000.0,
   "slowChargingRate": 3000.0
 }

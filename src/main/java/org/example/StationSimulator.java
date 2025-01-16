@@ -11,9 +11,7 @@ import java.util.Random;
 
 import evlib.station.*;
 
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptEngine;
-import javax.script.*;
+import org.graalvm.polyglot.*;
 
 public class StationSimulator {
     Queue<Event> eventQueue = new PriorityQueue<>(
@@ -68,6 +66,20 @@ public class StationSimulator {
             stationSetup();
 
             GenEvent c = new GenEvent(gT.getStartInstant(), rootNode.get("arrivalRate").asInt()); //Arrival rate is cars per hour
+
+            //Playing with GraalVM
+            String eq = rootNode.get("arrivalEq").asText(); //The JSON does not need the "y = " part of the equation
+            try(Context context = Context.create()){
+                int xValue = 2;
+
+                String jsFunc = "function evaluate(x) { return " + eq + "; }";
+                context.eval("js",jsFunc);
+                Value evaluateFunction = context.getBindings("js").getMember("evaluate");
+                int result = evaluateFunction.execute(xValue).asInt();
+                System.out.println(result);
+            }
+            //
+
             eventQueue.add(c);
             eventLoop();
 
