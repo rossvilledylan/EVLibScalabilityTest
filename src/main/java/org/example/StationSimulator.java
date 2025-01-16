@@ -11,6 +11,10 @@ import java.util.Random;
 
 import evlib.station.*;
 
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptEngine;
+import javax.script.*;
+
 public class StationSimulator {
     Queue<Event> eventQueue = new PriorityQueue<>(
             (e1, e2) -> e1.getTimestamp().compareTo(e2.getTimestamp())
@@ -31,7 +35,6 @@ public class StationSimulator {
     Instant stationTime;
     private static final Random random = new Random();
 
-    //Temporary, will be implemented into stats attribute somehow
     StationStats sS = new StationStats();
 
     public StationSimulator(String configFile, GlobalTime gT){
@@ -64,9 +67,12 @@ public class StationSimulator {
             station.setChargingRateSlow(rootNode.get("slowChargingRate").asInt());
             stationSetup();
 
-            GenEvent c = new GenEvent(gT.getStartInstant(), rootNode.get("arrivalRate").asInt());
+            GenEvent c = new GenEvent(gT.getStartInstant(), rootNode.get("arrivalRate").asInt()); //Arrival rate is cars per hour
             eventQueue.add(c);
             eventLoop();
+
+            System.out.println("Whooooopr");
+
 
         } catch(IOException e){
             System.out.println("The requested station file does not exist");
@@ -260,7 +266,6 @@ public class StationSimulator {
         ev.setCost(station.calculatePrice(ev));
         ev.setCondition("ready");
 
-        //station.setSpecificAmount("Wind",station.getMap().get("Wind")-ev.getEnergyToBeReceived());
         double sdf;
         sdf = a.getChargeDesired();
         //Determine which source of energy the car receives
@@ -274,8 +279,7 @@ public class StationSimulator {
                 station.setSpecificAmount(s, 0);
             }
         }
-
-
+        
         DepartureEvent b = new DepartureEvent(calcChargingTime(a.getChargeDesired(),ev.getKindOfCharging()), a.getTimestamp(), this.stationTime, a.getChargeType(), ev.getEnergyToBeReceived() < a.getChargeDesired() ? "Partially Charged" : "Fully Charged");
         eventQueue.add(b);
         station.assignCharger(ev);

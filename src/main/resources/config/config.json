@@ -6,6 +6,7 @@
 	"endTimeMin": 0,
 	"endTimeSec": 0,
 	"configFiles": [
-		"station1.json"
+		"station1.json",
+		"station2.json"
 	]
 }

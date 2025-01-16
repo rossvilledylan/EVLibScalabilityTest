@@ -1,15 +1,15 @@
 ********************
 
-Id: 1
-Name: Miami
-Remaining energy: 6000.0
-Fast chargers: 4
-Slow chargers: 4
+Id: 2
+Name: Seattle
+Remaining energy: 0.0
+Fast chargers: 8
+Slow chargers: 12
 Dischargers: 1
 Exchange handlers: 1
 Parking slots: 1
-Completed fast chargings: 91
-Completed slow chargings: 16
+Completed fast chargings: 44
+Completed slow chargings: 12
 Completed dischargings: 0
 Completed battery swappings: 0
 Completed parkings: 0
@@ -18,1083 +18,4203 @@ Vehicles waiting for slow charging: 0
 Vehicles waiting for discharging: 0
 Vehicles waiting for battery swapping: 0
 Energy amounts: 
-  Geothermal: 1500.0
-  Nonrenewable: 1500.0
-  Wind: 1500.0
-  Wave: 1500.0
+  Geothermal: 0.0
+  Nonrenewable: 0.0
+  Wind: 0.0
+  Wave: 0.0
   Discharging: 0.0
 
 ***Charging events***
 
-Id: 1
-Station name: Miami
-Asking energy: 19141.0
-Received energy: 19141.0
+Id: 155
+Station name: Seattle
+Asking energy: 15001.0
+Received energy: 15001.0
 Condition: finished
-Charging time: 1602502
+Charging time: 1255897
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 95705.0
+Cost: 75005.0
 
-Id: 2
-Station name: Miami
-Asking energy: 5794.0
-Received energy: 5794.0
+Id: 156
+Station name: Seattle
+Asking energy: 32272.0
+Received energy: 32272.0
 Condition: finished
-Charging time: 485079
+Charging time: 2701841
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 28970.0
+Cost: 161360.0
 
-Id: 3
-Station name: Miami
-Asking energy: 12030.0
-Received energy: 12030.0
+Id: 157
+Station name: Seattle
+Asking energy: 22642.0
+Received energy: 22642.0
 Condition: finished
-Charging time: 1007162
+Charging time: 1895609
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 60150.0
+Cost: 113210.0
 
-Id: 4
-Station name: Miami
-Asking energy: 16348.0
-Received energy: 16348.0
+Id: 158
+Station name: Seattle
+Asking energy: 21235.0
+Received energy: 21235.0
 Condition: finished
-Charging time: 1368669
+Charging time: 1777813
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 81740.0
+Cost: 106175.0
 
-Id: 5
-Station name: Miami
-Asking energy: 20507.0
-Received energy: 20507.0
+Id: 159
+Station name: Seattle
+Asking energy: 26919.0
+Received energy: 26919.0
 Condition: finished
-Charging time: 1716865
+Charging time: 2253683
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 102535.0
+Cost: 134595.0
 
-Id: 6
-Station name: Miami
-Asking energy: 8748.0
-Received energy: 8748.0
+Id: 160
+Station name: Seattle
+Asking energy: 32056.0
+Received energy: 32056.0
 Condition: finished
-Charging time: 732390
+Charging time: 2683758
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 43740.0
+Cost: 160280.0
 
-Id: 7
-Station name: Miami
-Asking energy: 2591.0
-Received energy: 2591.0
+Id: 161
+Station name: Seattle
+Asking energy: 27781.0
+Received energy: 27781.0
 Condition: finished
-Charging time: 216920
+Charging time: 2325851
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 12955.0
+Cost: 138905.0
 
-Id: 8
-Station name: Miami
-Asking energy: 30308.0
-Received energy: 30308.0
+Id: 162
+Station name: Seattle
+Asking energy: 16315.0
+Received energy: 16315.0
 Condition: finished
-Charging time: 2537413
+Charging time: 1365906
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 151540.0
+Cost: 81575.0
 
-Id: 9
-Station name: Miami
-Asking energy: 33472.0
-Received energy: 33472.0
+Id: 163
+Station name: Seattle
+Asking energy: 21635.0
+Received energy: 21635.0
 Condition: finished
-Charging time: 2802306
+Charging time: 1811302
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 167360.0
+Cost: 108175.0
 
-Id: 10
-Station name: Miami
-Asking energy: 11326.0
-Received energy: 11326.0
+Id: 164
+Station name: Seattle
+Asking energy: 28132.0
+Received energy: 28132.0
 Condition: finished
-Charging time: 948223
+Charging time: 2355237
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 56630.0
+Cost: 140660.0
 
-Id: 11
-Station name: Miami
-Asking energy: 7569.0
-Received energy: 7569.0
+Id: 165
+Station name: Seattle
+Asking energy: 32863.0
+Received energy: 32863.0
 Condition: finished
-Charging time: 633683
+Charging time: 2751320
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 37845.0
+Cost: 164315.0
 
-Id: 12
-Station name: Miami
-Asking energy: 18293.0
-Received energy: 18293.0
+Id: 166
+Station name: Seattle
+Asking energy: 38703.0
+Received energy: 38703.0
 Condition: finished
-Charging time: 1531506
+Charging time: 3240251
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 91465.0
+Cost: 193515.0
 
-Id: 13
-Station name: Miami
-Asking energy: 16717.0
-Received energy: 16717.0
+Id: 167
+Station name: Seattle
+Asking energy: 17015.0
+Received energy: 17015.0
 Condition: finished
-Charging time: 1399562
+Charging time: 1424511
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 83585.0
+Cost: 85075.0
 
-Id: 14
-Station name: Miami
-Asking energy: 19624.0
-Received energy: 19624.0
+Id: 168
+Station name: Seattle
+Asking energy: 30784.0
+Received energy: 30784.0
 Condition: finished
-Charging time: 1642939
+Charging time: 2577265
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 98120.0
+Cost: 153920.0
 
-Id: 15
-Station name: Miami
-Asking energy: 23284.0
-Received energy: 23284.0
+Id: 169
+Station name: Seattle
+Asking energy: 6464.0
+Received energy: 6464.0
 Condition: finished
-Charging time: 1949358
+Charging time: 541172
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 116420.0
+Cost: 32320.0
 
-Id: 16
-Station name: Miami
-Asking energy: 26367.0
-Received energy: 26367.0
+Id: 170
+Station name: Seattle
+Asking energy: 14130.0
+Received energy: 14130.0
 Condition: finished
-Charging time: 2207469
+Charging time: 1182976
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 131835.0
+Cost: 70650.0
 
-Id: 17
-Station name: Miami
-Asking energy: 32573.0
-Received energy: 32573.0
+Id: 171
+Station name: Seattle
+Asking energy: 24281.0
+Received energy: 24281.0
 Condition: finished
-Charging time: 2727041
+Charging time: 2032827
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 162865.0
+Cost: 121405.0
 
-Id: 18
-Station name: Miami
-Asking energy: 17841.0
-Received energy: 17841.0
+Id: 172
+Station name: Seattle
+Asking energy: 6715.0
+Received energy: 6715.0
 Condition: finished
-Charging time: 1493665
+Charging time: 562186
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 89205.0
+Cost: 33575.0
 
-Id: 19
-Station name: Miami
-Asking energy: 14855.0
-Received energy: 14855.0
+Id: 173
+Station name: Seattle
+Asking energy: 9137.0
+Received energy: 9137.0
 Condition: finished
-Charging time: 1243674
+Charging time: 764958
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 74275.0
+Cost: 45685.0
 
-Id: 20
-Station name: Miami
-Asking energy: 31945.0
-Received energy: 31945.0
+Id: 174
+Station name: Seattle
+Asking energy: 35747.0
+Received energy: 35747.0
 Condition: finished
-Charging time: 2674465
+Charging time: 2992772
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 159725.0
+Cost: 178735.0
 
-Id: 21
-Station name: Miami
-Asking energy: 23550.0
-Received energy: 23550.0
+Id: 175
+Station name: Seattle
+Asking energy: 32057.0
+Received energy: 32057.0
 Condition: finished
-Charging time: 1971627
+Charging time: 2683841
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 117750.0
+Cost: 160285.0
 
-Id: 22
-Station name: Miami
-Asking energy: 36131.0
-Received energy: 36131.0
+Id: 176
+Station name: Seattle
+Asking energy: 14708.0
+Received energy: 14708.0
 Condition: finished
-Charging time: 3024920
+Charging time: 1231367
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 180655.0
+Cost: 73540.0
 
-Id: 23
-Station name: Miami
-Asking energy: 30063.0
-Received energy: 30063.0
+Id: 177
+Station name: Seattle
+Asking energy: 23651.0
+Received energy: 23651.0
 Condition: finished
-Charging time: 2516902
+Charging time: 1980083
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 150315.0
+Cost: 118255.0
 
-Id: 24
-Station name: Miami
-Asking energy: 34445.0
-Received energy: 34445.0
+Id: 178
+Station name: Seattle
+Asking energy: 16337.0
+Received energy: 16337.0
 Condition: finished
-Charging time: 2883767
+Charging time: 1367748
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 172225.0
+Cost: 81685.0
 
-Id: 25
-Station name: Miami
-Asking energy: 24796.0
-Received energy: 24796.0
+Id: 179
+Station name: Seattle
+Asking energy: 11614.0
+Received energy: 11614.0
 Condition: finished
-Charging time: 2075944
+Charging time: 972334
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 123980.0
+Cost: 58070.0
 
-Id: 26
-Station name: Miami
-Asking energy: 21485.0
-Received energy: 21485.0
+Id: 180
+Station name: Seattle
+Asking energy: 25999.0
+Received energy: 25999.0
 Condition: finished
-Charging time: 1798744
+Charging time: 2176660
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 107425.0
+Cost: 129995.0
 
-Id: 27
-Station name: Miami
-Asking energy: 9333.0
-Received energy: 9333.0
+Id: 181
+Station name: Seattle
+Asking energy: 6009.0
+Received energy: 6009.0
 Condition: finished
-Charging time: 781367
+Charging time: 503079
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 46665.0
+Cost: 30045.0
 
-Id: 28
-Station name: Miami
-Asking energy: 30840.0
-Received energy: 30840.0
+Id: 182
+Station name: Seattle
+Asking energy: 20198.0
+Received energy: 20198.0
 Condition: finished
-Charging time: 2581953
+Charging time: 1690995
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 154200.0
+Cost: 100990.0
 
-Id: 29
-Station name: Miami
-Asking energy: 19373.0
-Received energy: 19373.0
+Id: 183
+Station name: Seattle
+Asking energy: 4020.0
+Received energy: 4020.0
 Condition: finished
-Charging time: 1621925
+Charging time: 336558
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 96865.0
+Cost: 20100.0
 
-Id: 30
-Station name: Miami
-Asking energy: 18332.0
-Received energy: 18332.0
+Id: 184
+Station name: Seattle
+Asking energy: 25566.0
+Received energy: 25566.0
 Condition: finished
-Charging time: 1534772
+Charging time: 2140409
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 91660.0
+Cost: 127830.0
 
-Id: 31
-Station name: Miami
-Asking energy: 24628.0
-Received energy: 24628.0
+Id: 185
+Station name: Seattle
+Asking energy: 10413.0
+Received energy: 10413.0
 Condition: finished
-Charging time: 2061879
+Charging time: 871786
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 123140.0
+Cost: 52065.0
 
-Id: 32
-Station name: Miami
-Asking energy: 39760.0
-Received energy: 39760.0
+Id: 186
+Station name: Seattle
+Asking energy: 13891.0
+Received energy: 13891.0
 Condition: finished
-Charging time: 3328744
+Charging time: 1162967
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 198800.0
+Cost: 69455.0
 
-Id: 33
-Station name: Miami
-Asking energy: 23453.0
-Received energy: 23453.0
+Id: 187
+Station name: Seattle
+Asking energy: 3512.0
+Received energy: 3512.0
 Condition: finished
-Charging time: 1963506
+Charging time: 294027
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 117265.0
+Cost: 17560.0
 
-Id: 34
-Station name: Miami
-Asking energy: 25718.0
-Received energy: 25718.0
+Id: 188
+Station name: Seattle
+Asking energy: 32140.0
+Received energy: 32140.0
 Condition: finished
-Charging time: 2153134
+Charging time: 2690790
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 128590.0
+Cost: 160700.0
 
-Id: 35
-Station name: Miami
-Asking energy: 4531.0
-Received energy: 4531.0
+Id: 189
+Station name: Seattle
+Asking energy: 24475.0
+Received energy: 24475.0
 Condition: finished
-Charging time: 379339
+Charging time: 2049069
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 22655.0
+Cost: 122375.0
 
-Id: 36
-Station name: Miami
-Asking energy: 35293.0
-Received energy: 35293.0
+Id: 190
+Station name: Seattle
+Asking energy: 16929.0
+Received energy: 16929.0
 Condition: finished
-Charging time: 2954762
+Charging time: 1417311
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 176465.0
+Cost: 84645.0
 
-Id: 37
-Station name: Miami
-Asking energy: 8893.0
-Received energy: 8893.0
+Id: 191
+Station name: Seattle
+Asking energy: 17690.0
+Received energy: 17690.0
 Condition: finished
-Charging time: 744530
+Charging time: 1481023
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 44465.0
+Cost: 88450.0
 
-Id: 38
-Station name: Miami
-Asking energy: 5258.0
-Received energy: 5258.0
+Id: 192
+Station name: Seattle
+Asking energy: 15698.0
+Received energy: 15698.0
 Condition: finished
-Charging time: 440204
+Charging time: 1314251
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 26290.0
+Cost: 78490.0
 
-Id: 39
-Station name: Miami
-Asking energy: 7562.0
-Received energy: 7562.0
+Id: 193
+Station name: Seattle
+Asking energy: 25879.0
+Received energy: 25879.0
 Condition: finished
-Charging time: 633097
+Charging time: 2166613
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 37810.0
+Cost: 129395.0
 
-Id: 40
-Station name: Miami
-Asking energy: 19979.0
-Received energy: 19979.0
+Id: 194
+Station name: Seattle
+Asking energy: 30641.0
+Received energy: 30641.0
 Condition: finished
-Charging time: 1672660
+Charging time: 2565293
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 99895.0
+Cost: 153205.0
 
-Id: 41
-Station name: Miami
-Asking energy: 32847.0
-Received energy: 32847.0
+Id: 195
+Station name: Seattle
+Asking energy: 5989.0
+Received energy: 5989.0
 Condition: finished
-Charging time: 2749981
+Charging time: 501404
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 164235.0
+Cost: 29945.0
 
-Id: 42
-Station name: Miami
-Asking energy: 32156.0
-Received energy: 32156.0
+Id: 196
+Station name: Seattle
+Asking energy: 33332.0
+Received energy: 33332.0
 Condition: finished
-Charging time: 2692130
+Charging time: 2790586
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 160780.0
+Cost: 166660.0
 
-Id: 43
-Station name: Miami
-Asking energy: 6913.0
-Received energy: 6913.0
+Id: 197
+Station name: Seattle
+Asking energy: 38016.0
+Received energy: 38016.0
 Condition: finished
-Charging time: 578762
+Charging time: 3182734
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 34565.0
+Cost: 190080.0
 
-Id: 44
-Station name: Miami
-Asking energy: 18386.0
-Received energy: 18386.0
+Id: 198
+Station name: Seattle
+Asking energy: 23095.0
+Received energy: 23095.0
 Condition: finished
-Charging time: 1539293
+Charging time: 1933534
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 91930.0
+Cost: 115475.0
 
-Id: 45
-Station name: Miami
-Asking energy: 7898.0
-Received energy: 7898.0
+Id: 199
+Station name: Seattle
+Asking energy: 33678.0
+Received energy: 33678.0
 Condition: finished
-Charging time: 661227
+Charging time: 2819553
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 39490.0
+Cost: 168390.0
 
-Id: 46
-Station name: Miami
-Asking energy: 9493.0
-Received energy: 9493.0
+Id: 200
+Station name: Seattle
+Asking energy: 24986.0
+Received energy: 24986.0
 Condition: finished
-Charging time: 794762
+Charging time: 2091851
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 47465.0
+Cost: 124930.0
 
-Id: 47
-Station name: Miami
-Asking energy: 10101.0
-Received energy: 10101.0
+Id: 201
+Station name: Seattle
+Asking energy: 30672.0
+Received energy: 30672.0
 Condition: finished
-Charging time: 845665
+Charging time: 2567888
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 50505.0
+Cost: 153360.0
 
-Id: 48
-Station name: Miami
-Asking energy: 22007.0
-Received energy: 22007.0
+Id: 202
+Station name: Seattle
+Asking energy: 15907.0
+Received energy: 15907.0
 Condition: finished
-Charging time: 1842446
+Charging time: 1331748
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 110035.0
+Cost: 79535.0
 
-Id: 49
-Station name: Miami
-Asking energy: 22261.0
-Received energy: 22261.0
+Id: 203
+Station name: Seattle
+Asking energy: 2803.0
+Received energy: 2803.0
 Condition: finished
-Charging time: 1863711
+Charging time: 234669
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 111305.0
+Cost: 14015.0
 
-Id: 50
-Station name: Miami
-Asking energy: 9030.0
-Received energy: 9030.0
+Id: 204
+Station name: Seattle
+Asking energy: 31999.0
+Received energy: 31999.0
 Condition: finished
-Charging time: 756000
+Charging time: 2678986
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 45150.0
+Cost: 159995.0
 
-Id: 51
-Station name: Miami
-Asking energy: 16549.0
-Received energy: 16549.0
+Id: 205
+Station name: Seattle
+Asking energy: 20134.0
+Received energy: 20134.0
 Condition: finished
-Charging time: 1385497
+Charging time: 1685637
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 82745.0
+Cost: 100670.0
 
-Id: 52
-Station name: Miami
-Asking energy: 11487.0
-Received energy: 11487.0
+Id: 206
+Station name: Seattle
+Asking energy: 26589.0
+Received energy: 26589.0
 Condition: finished
-Charging time: 961702
+Charging time: 2226055
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 57435.0
+Cost: 132945.0
 
-Id: 53
-Station name: Miami
-Asking energy: 13672.0
-Received energy: 13672.0
+Id: 207
+Station name: Seattle
+Asking energy: 26813.0
+Received energy: 26813.0
 Condition: finished
-Charging time: 1144632
+Charging time: 2244809
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 68360.0
+Cost: 134065.0
 
-Id: 54
-Station name: Miami
-Asking energy: 34485.0
-Received energy: 34485.0
+Id: 208
+Station name: Seattle
+Asking energy: 1721.0
+Received energy: 1721.0
 Condition: finished
-Charging time: 2887116
+Charging time: 144083
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 172425.0
+Cost: 8605.0
 
-Id: 55
-Station name: Miami
-Asking energy: 31352.0
-Received energy: 31352.0
+Id: 209
+Station name: Seattle
+Asking energy: 33623.0
+Received energy: 33623.0
 Condition: finished
-Charging time: 2624818
+Charging time: 2814948
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 156760.0
+Cost: 168115.0
 
-Id: 56
-Station name: Miami
-Asking energy: 32671.0
-Received energy: 32671.0
+Id: 210
+Station name: Seattle
+Asking energy: 39813.0
+Received energy: 39813.0
 Condition: finished
-Charging time: 2735246
+Charging time: 3333181
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 163355.0
+Cost: 199065.0
 
-Id: 57
-Station name: Miami
-Asking energy: 38032.0
-Received energy: 38032.0
-Condition: finished
-Charging time: 3184074
+Id: 211
+Station name: Seattle
+Asking energy: 31762.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 212
+Station name: Seattle
+Asking energy: 1115.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 213
+Station name: Seattle
+Asking energy: 6015.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 214
+Station name: Seattle
+Asking energy: 31991.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 215
+Station name: Seattle
+Asking energy: 34529.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 216
+Station name: Seattle
+Asking energy: 426.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 217
+Station name: Seattle
+Asking energy: 37197.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 218
+Station name: Seattle
+Asking energy: 39227.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 219
+Station name: Seattle
+Asking energy: 1431.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 220
+Station name: Seattle
+Asking energy: 15835.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 221
+Station name: Seattle
+Asking energy: 14187.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 222
+Station name: Seattle
+Asking energy: 24574.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 223
+Station name: Seattle
+Asking energy: 23228.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 224
+Station name: Seattle
+Asking energy: 21522.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 225
+Station name: Seattle
+Asking energy: 16429.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 226
+Station name: Seattle
+Asking energy: 28958.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 227
+Station name: Seattle
+Asking energy: 6312.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 228
+Station name: Seattle
+Asking energy: 25699.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 229
+Station name: Seattle
+Asking energy: 27033.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 230
+Station name: Seattle
+Asking energy: 13338.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 231
+Station name: Seattle
+Asking energy: 20313.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 232
+Station name: Seattle
+Asking energy: 9099.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 233
+Station name: Seattle
+Asking energy: 29335.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 234
+Station name: Seattle
+Asking energy: 33330.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 235
+Station name: Seattle
+Asking energy: 12264.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 236
+Station name: Seattle
+Asking energy: 24060.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 237
+Station name: Seattle
+Asking energy: 27680.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 238
+Station name: Seattle
+Asking energy: 22871.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 239
+Station name: Seattle
+Asking energy: 16971.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 240
+Station name: Seattle
+Asking energy: 38770.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 241
+Station name: Seattle
+Asking energy: 37908.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 242
+Station name: Seattle
+Asking energy: 29603.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 243
+Station name: Seattle
+Asking energy: 16181.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 244
+Station name: Seattle
+Asking energy: 21767.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 245
+Station name: Seattle
+Asking energy: 28065.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 246
+Station name: Seattle
+Asking energy: 28709.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 247
+Station name: Seattle
+Asking energy: 20875.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 248
+Station name: Seattle
+Asking energy: 413.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 249
+Station name: Seattle
+Asking energy: 14604.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 250
+Station name: Seattle
+Asking energy: 2345.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 251
+Station name: Seattle
+Asking energy: 38398.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 252
+Station name: Seattle
+Asking energy: 22919.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 253
+Station name: Seattle
+Asking energy: 22056.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 254
+Station name: Seattle
+Asking energy: 10079.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 255
+Station name: Seattle
+Asking energy: 31911.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 256
+Station name: Seattle
+Asking energy: 28989.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 257
+Station name: Seattle
+Asking energy: 35774.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 258
+Station name: Seattle
+Asking energy: 18773.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 259
+Station name: Seattle
+Asking energy: 24150.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 260
+Station name: Seattle
+Asking energy: 32717.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 261
+Station name: Seattle
+Asking energy: 1251.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 262
+Station name: Seattle
+Asking energy: 23338.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 263
+Station name: Seattle
+Asking energy: 14531.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 264
+Station name: Seattle
+Asking energy: 34118.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 265
+Station name: Seattle
+Asking energy: 3032.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 266
+Station name: Seattle
+Asking energy: 6912.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 267
+Station name: Seattle
+Asking energy: 34298.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 268
+Station name: Seattle
+Asking energy: 11842.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 269
+Station name: Seattle
+Asking energy: 13230.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 270
+Station name: Seattle
+Asking energy: 7308.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 271
+Station name: Seattle
+Asking energy: 12771.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 272
+Station name: Seattle
+Asking energy: 227.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 273
+Station name: Seattle
+Asking energy: 36126.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 274
+Station name: Seattle
+Asking energy: 11552.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 275
+Station name: Seattle
+Asking energy: 12947.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 276
+Station name: Seattle
+Asking energy: 25487.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 277
+Station name: Seattle
+Asking energy: 26410.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 278
+Station name: Seattle
+Asking energy: 35218.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 279
+Station name: Seattle
+Asking energy: 21229.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 280
+Station name: Seattle
+Asking energy: 23368.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 281
+Station name: Seattle
+Asking energy: 7680.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 282
+Station name: Seattle
+Asking energy: 11287.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 283
+Station name: Seattle
+Asking energy: 17887.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 284
+Station name: Seattle
+Asking energy: 11609.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 285
+Station name: Seattle
+Asking energy: 12360.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 286
+Station name: Seattle
+Asking energy: 26557.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 287
+Station name: Seattle
+Asking energy: 30542.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 288
+Station name: Seattle
+Asking energy: 6255.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 289
+Station name: Seattle
+Asking energy: 5744.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 290
+Station name: Seattle
+Asking energy: 38392.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 291
+Station name: Seattle
+Asking energy: 12690.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 292
+Station name: Seattle
+Asking energy: 8806.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 293
+Station name: Seattle
+Asking energy: 17464.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 294
+Station name: Seattle
+Asking energy: 26409.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 295
+Station name: Seattle
+Asking energy: 36756.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 296
+Station name: Seattle
+Asking energy: 13127.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 297
+Station name: Seattle
+Asking energy: 22788.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 298
+Station name: Seattle
+Asking energy: 37049.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 299
+Station name: Seattle
+Asking energy: 4671.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 300
+Station name: Seattle
+Asking energy: 9160.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 301
+Station name: Seattle
+Asking energy: 9554.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 302
+Station name: Seattle
+Asking energy: 13409.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 303
+Station name: Seattle
+Asking energy: 15098.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 304
+Station name: Seattle
+Asking energy: 39162.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 305
+Station name: Seattle
+Asking energy: 29181.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 306
+Station name: Seattle
+Asking energy: 37862.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 307
+Station name: Seattle
+Asking energy: 7297.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 308
+Station name: Seattle
+Asking energy: 19263.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 309
+Station name: Seattle
+Asking energy: 36549.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 310
+Station name: Seattle
+Asking energy: 17978.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 311
+Station name: Seattle
+Asking energy: 2257.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 312
+Station name: Seattle
+Asking energy: 13015.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 313
+Station name: Seattle
+Asking energy: 38644.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 314
+Station name: Seattle
+Asking energy: 29192.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 315
+Station name: Seattle
+Asking energy: 20739.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 316
+Station name: Seattle
+Asking energy: 17758.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 317
+Station name: Seattle
+Asking energy: 1096.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 318
+Station name: Seattle
+Asking energy: 25181.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 319
+Station name: Seattle
+Asking energy: 8513.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 320
+Station name: Seattle
+Asking energy: 10011.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 321
+Station name: Seattle
+Asking energy: 14019.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 322
+Station name: Seattle
+Asking energy: 29153.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 323
+Station name: Seattle
+Asking energy: 17988.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 324
+Station name: Seattle
+Asking energy: 3139.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 325
+Station name: Seattle
+Asking energy: 24798.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 326
+Station name: Seattle
+Asking energy: 14960.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 327
+Station name: Seattle
+Asking energy: 18662.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 328
+Station name: Seattle
+Asking energy: 2297.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 329
+Station name: Seattle
+Asking energy: 17846.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 330
+Station name: Seattle
+Asking energy: 8377.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 331
+Station name: Seattle
+Asking energy: 23129.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 332
+Station name: Seattle
+Asking energy: 32305.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 333
+Station name: Seattle
+Asking energy: 37111.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 334
+Station name: Seattle
+Asking energy: 18696.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 335
+Station name: Seattle
+Asking energy: 3132.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 336
+Station name: Seattle
+Asking energy: 29295.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 337
+Station name: Seattle
+Asking energy: 15414.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 338
+Station name: Seattle
+Asking energy: 18120.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 339
+Station name: Seattle
+Asking energy: 21652.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 340
+Station name: Seattle
+Asking energy: 9321.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 341
+Station name: Seattle
+Asking energy: 11822.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 342
+Station name: Seattle
+Asking energy: 28421.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 343
+Station name: Seattle
+Asking energy: 10340.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 344
+Station name: Seattle
+Asking energy: 10815.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 345
+Station name: Seattle
+Asking energy: 7814.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 346
+Station name: Seattle
+Asking energy: 20763.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 347
+Station name: Seattle
+Asking energy: 39286.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 348
+Station name: Seattle
+Asking energy: 14692.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 349
+Station name: Seattle
+Asking energy: 36460.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 350
+Station name: Seattle
+Asking energy: 1707.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 351
+Station name: Seattle
+Asking energy: 20205.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 352
+Station name: Seattle
+Asking energy: 4862.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 353
+Station name: Seattle
+Asking energy: 29427.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 354
+Station name: Seattle
+Asking energy: 26695.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 355
+Station name: Seattle
+Asking energy: 30304.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 356
+Station name: Seattle
+Asking energy: 495.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 357
+Station name: Seattle
+Asking energy: 29418.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 358
+Station name: Seattle
+Asking energy: 20563.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 359
+Station name: Seattle
+Asking energy: 38765.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 360
+Station name: Seattle
+Asking energy: 25311.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 361
+Station name: Seattle
+Asking energy: 9933.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 362
+Station name: Seattle
+Asking energy: 23421.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 363
+Station name: Seattle
+Asking energy: 10844.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 364
+Station name: Seattle
+Asking energy: 4910.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 365
+Station name: Seattle
+Asking energy: 23665.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 366
+Station name: Seattle
+Asking energy: 4931.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 367
+Station name: Seattle
+Asking energy: 25551.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 368
+Station name: Seattle
+Asking energy: 33495.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 369
+Station name: Seattle
+Asking energy: 5330.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 370
+Station name: Seattle
+Asking energy: 30621.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 371
+Station name: Seattle
+Asking energy: 39739.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 372
+Station name: Seattle
+Asking energy: 31663.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 373
+Station name: Seattle
+Asking energy: 33904.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 374
+Station name: Seattle
+Asking energy: 558.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 375
+Station name: Seattle
+Asking energy: 38839.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 376
+Station name: Seattle
+Asking energy: 12533.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 377
+Station name: Seattle
+Asking energy: 25371.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 378
+Station name: Seattle
+Asking energy: 11641.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 379
+Station name: Seattle
+Asking energy: 32861.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 380
+Station name: Seattle
+Asking energy: 36481.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 381
+Station name: Seattle
+Asking energy: 24111.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 382
+Station name: Seattle
+Asking energy: 21087.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 383
+Station name: Seattle
+Asking energy: 28977.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 384
+Station name: Seattle
+Asking energy: 30959.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 385
+Station name: Seattle
+Asking energy: 10169.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 386
+Station name: Seattle
+Asking energy: 38741.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 387
+Station name: Seattle
+Asking energy: 22751.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 388
+Station name: Seattle
+Asking energy: 18671.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 389
+Station name: Seattle
+Asking energy: 33596.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 390
+Station name: Seattle
+Asking energy: 20718.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 391
+Station name: Seattle
+Asking energy: 19285.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 392
+Station name: Seattle
+Asking energy: 26765.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 393
+Station name: Seattle
+Asking energy: 38993.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 394
+Station name: Seattle
+Asking energy: 8379.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 395
+Station name: Seattle
+Asking energy: 15079.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 396
+Station name: Seattle
+Asking energy: 3589.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 397
+Station name: Seattle
+Asking energy: 28386.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 398
+Station name: Seattle
+Asking energy: 27434.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 399
+Station name: Seattle
+Asking energy: 22471.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 400
+Station name: Seattle
+Asking energy: 13481.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 401
+Station name: Seattle
+Asking energy: 15878.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 402
+Station name: Seattle
+Asking energy: 2661.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 403
+Station name: Seattle
+Asking energy: 26833.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 404
+Station name: Seattle
+Asking energy: 1099.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 405
+Station name: Seattle
+Asking energy: 24738.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 406
+Station name: Seattle
+Asking energy: 2482.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 407
+Station name: Seattle
+Asking energy: 3702.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 408
+Station name: Seattle
+Asking energy: 37524.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 409
+Station name: Seattle
+Asking energy: 23635.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 410
+Station name: Seattle
+Asking energy: 23133.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 411
+Station name: Seattle
+Asking energy: 27878.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 412
+Station name: Seattle
+Asking energy: 25018.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 413
+Station name: Seattle
+Asking energy: 32152.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 414
+Station name: Seattle
+Asking energy: 14346.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 415
+Station name: Seattle
+Asking energy: 12932.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 416
+Station name: Seattle
+Asking energy: 29678.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 417
+Station name: Seattle
+Asking energy: 35828.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 418
+Station name: Seattle
+Asking energy: 25355.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 419
+Station name: Seattle
+Asking energy: 24844.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 420
+Station name: Seattle
+Asking energy: 22984.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 421
+Station name: Seattle
+Asking energy: 543.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 422
+Station name: Seattle
+Asking energy: 20027.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 423
+Station name: Seattle
+Asking energy: 7239.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 424
+Station name: Seattle
+Asking energy: 26910.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 425
+Station name: Seattle
+Asking energy: 13598.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 426
+Station name: Seattle
+Asking energy: 15277.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 427
+Station name: Seattle
+Asking energy: 15108.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 428
+Station name: Seattle
+Asking energy: 14270.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 429
+Station name: Seattle
+Asking energy: 12301.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 190160.0
+Cost: 0.0
 
-Id: 58
-Station name: Miami
-Asking energy: 13899.0
-Received energy: 13899.0
-Condition: finished
-Charging time: 1163637
+Id: 430
+Station name: Seattle
+Asking energy: 3381.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 69495.0
+Cost: 0.0
 
-Id: 59
-Station name: Miami
-Asking energy: 22158.0
-Received energy: 22158.0
-Condition: finished
-Charging time: 1855088
+Id: 431
+Station name: Seattle
+Asking energy: 39470.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 110790.0
+Cost: 0.0
 
-Id: 60
-Station name: Miami
-Asking energy: 12490.0
-Received energy: 12490.0
-Condition: finished
-Charging time: 1045674
+Id: 432
+Station name: Seattle
+Asking energy: 19191.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 62450.0
+Cost: 0.0
 
-Id: 61
-Station name: Miami
-Asking energy: 5761.0
-Received energy: 5761.0
-Condition: finished
-Charging time: 482316
+Id: 433
+Station name: Seattle
+Asking energy: 36693.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 28805.0
+Cost: 0.0
 
-Id: 62
-Station name: Miami
-Asking energy: 30067.0
-Received energy: 30067.0
-Condition: finished
-Charging time: 2517237
+Id: 434
+Station name: Seattle
+Asking energy: 2998.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 150335.0
+Cost: 0.0
 
-Id: 63
-Station name: Miami
-Asking energy: 37611.0
-Received energy: 37611.0
-Condition: finished
-Charging time: 3148827
+Id: 435
+Station name: Seattle
+Asking energy: 36561.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 188055.0
+Cost: 0.0
 
-Id: 64
-Station name: Miami
-Asking energy: 35711.0
-Received energy: 35711.0
-Condition: finished
-Charging time: 2989758
+Id: 436
+Station name: Seattle
+Asking energy: 7261.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 178555.0
+Cost: 0.0
 
-Id: 65
-Station name: Miami
-Asking energy: 38909.0
-Received energy: 38909.0
-Condition: finished
-Charging time: 3257497
+Id: 437
+Station name: Seattle
+Asking energy: 25732.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 194545.0
+Cost: 0.0
 
-Id: 66
-Station name: Miami
-Asking energy: 37574.0
-Received energy: 37574.0
-Condition: finished
-Charging time: 3145730
+Id: 438
+Station name: Seattle
+Asking energy: 1889.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 187870.0
+Cost: 0.0
 
-Id: 67
-Station name: Miami
-Asking energy: 18428.0
-Received energy: 18428.0
-Condition: finished
-Charging time: 1542809
+Id: 439
+Station name: Seattle
+Asking energy: 36292.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 92140.0
+Cost: 0.0
 
-Id: 68
-Station name: Miami
-Asking energy: 26461.0
-Received energy: 26461.0
-Condition: finished
-Charging time: 2215339
+Id: 440
+Station name: Seattle
+Asking energy: 32396.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 132305.0
+Cost: 0.0
 
-Id: 69
-Station name: Miami
-Asking energy: 39687.0
-Received energy: 39687.0
-Condition: finished
-Charging time: 3322632
+Id: 441
+Station name: Seattle
+Asking energy: 35955.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 198435.0
+Cost: 0.0
 
-Id: 70
-Station name: Miami
-Asking energy: 6904.0
-Received energy: 6904.0
-Condition: finished
-Charging time: 578009
+Id: 442
+Station name: Seattle
+Asking energy: 20826.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 34520.0
+Cost: 0.0
 
-Id: 71
-Station name: Miami
-Asking energy: 29982.0
-Received energy: 29982.0
-Condition: finished
-Charging time: 2510120
+Id: 443
+Station name: Seattle
+Asking energy: 9798.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 149910.0
+Cost: 0.0
 
-Id: 72
-Station name: Miami
-Asking energy: 3603.0
-Received energy: 3603.0
-Condition: finished
-Charging time: 301646
+Id: 444
+Station name: Seattle
+Asking energy: 16315.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 18015.0
+Cost: 0.0
 
-Id: 73
-Station name: Miami
-Asking energy: 23497.0
-Received energy: 23497.0
-Condition: finished
-Charging time: 1967190
+Id: 445
+Station name: Seattle
+Asking energy: 9889.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 117485.0
+Cost: 0.0
 
-Id: 74
-Station name: Miami
-Asking energy: 23241.0
-Received energy: 23241.0
-Condition: finished
-Charging time: 1945758
+Id: 446
+Station name: Seattle
+Asking energy: 16287.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 116205.0
+Cost: 0.0
 
-Id: 75
-Station name: Miami
-Asking energy: 1403.0
-Received energy: 1403.0
-Condition: finished
-Charging time: 117460
+Id: 447
+Station name: Seattle
+Asking energy: 9338.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 7015.0
+Cost: 0.0
 
-Id: 76
-Station name: Miami
-Asking energy: 8855.0
-Received energy: 8855.0
-Condition: finished
-Charging time: 741348
+Id: 448
+Station name: Seattle
+Asking energy: 20140.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 44275.0
+Cost: 0.0
 
-Id: 77
-Station name: Miami
-Asking energy: 2015.0
-Received energy: 2015.0
-Condition: finished
-Charging time: 168697
+Id: 449
+Station name: Seattle
+Asking energy: 33306.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 10075.0
+Cost: 0.0
 
-Id: 78
-Station name: Miami
-Asking energy: 31148.0
-Received energy: 31148.0
-Condition: finished
-Charging time: 2607739
+Id: 450
+Station name: Seattle
+Asking energy: 19919.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 155740.0
+Cost: 0.0
 
-Id: 79
-Station name: Miami
-Asking energy: 9825.0
-Received energy: 9825.0
-Condition: finished
-Charging time: 822558
+Id: 451
+Station name: Seattle
+Asking energy: 11171.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 49125.0
+Cost: 0.0
 
-Id: 80
-Station name: Miami
-Asking energy: 29991.0
-Received energy: 29991.0
-Condition: finished
-Charging time: 2510874
+Id: 452
+Station name: Seattle
+Asking energy: 25679.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 149955.0
+Cost: 0.0
 
-Id: 81
-Station name: Miami
-Asking energy: 17440.0
-Received energy: 17440.0
-Condition: finished
-Charging time: 1460093
+Id: 453
+Station name: Seattle
+Asking energy: 12251.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 87200.0
+Cost: 0.0
 
-Id: 82
-Station name: Miami
-Asking energy: 39910.0
-Received energy: 39910.0
-Condition: finished
-Charging time: 3341302
+Id: 454
+Station name: Seattle
+Asking energy: 1918.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 199550.0
+Cost: 0.0
 
-Id: 83
-Station name: Miami
-Asking energy: 39558.0
-Received energy: 39558.0
-Condition: finished
-Charging time: 3311832
+Id: 455
+Station name: Seattle
+Asking energy: 14846.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 197790.0
+Cost: 0.0
 
-Id: 84
-Station name: Miami
-Asking energy: 33398.0
-Received energy: 33398.0
-Condition: finished
-Charging time: 2796111
+Id: 456
+Station name: Seattle
+Asking energy: 38528.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 166990.0
+Cost: 0.0
 
-Id: 85
-Station name: Miami
-Asking energy: 36037.0
-Received energy: 36037.0
-Condition: finished
-Charging time: 3017051
+Id: 457
+Station name: Seattle
+Asking energy: 9142.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 458
+Station name: Seattle
+Asking energy: 14306.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 459
+Station name: Seattle
+Asking energy: 10116.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 460
+Station name: Seattle
+Asking energy: 14045.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 461
+Station name: Seattle
+Asking energy: 27336.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 462
+Station name: Seattle
+Asking energy: 18475.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 463
+Station name: Seattle
+Asking energy: 17499.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 464
+Station name: Seattle
+Asking energy: 36103.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 465
+Station name: Seattle
+Asking energy: 14253.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 466
+Station name: Seattle
+Asking energy: 2832.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 467
+Station name: Seattle
+Asking energy: 38891.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 468
+Station name: Seattle
+Asking energy: 13066.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 469
+Station name: Seattle
+Asking energy: 37707.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 470
+Station name: Seattle
+Asking energy: 14345.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 471
+Station name: Seattle
+Asking energy: 17090.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 472
+Station name: Seattle
+Asking energy: 28170.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 473
+Station name: Seattle
+Asking energy: 21475.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 474
+Station name: Seattle
+Asking energy: 21996.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 475
+Station name: Seattle
+Asking energy: 1127.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 476
+Station name: Seattle
+Asking energy: 10479.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 477
+Station name: Seattle
+Asking energy: 30569.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 478
+Station name: Seattle
+Asking energy: 1114.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 479
+Station name: Seattle
+Asking energy: 25970.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 480
+Station name: Seattle
+Asking energy: 22379.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 481
+Station name: Seattle
+Asking energy: 28457.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 482
+Station name: Seattle
+Asking energy: 29651.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 483
+Station name: Seattle
+Asking energy: 10026.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 484
+Station name: Seattle
+Asking energy: 5839.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 485
+Station name: Seattle
+Asking energy: 13219.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 486
+Station name: Seattle
+Asking energy: 13840.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 487
+Station name: Seattle
+Asking energy: 28394.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 488
+Station name: Seattle
+Asking energy: 13566.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 489
+Station name: Seattle
+Asking energy: 35748.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 490
+Station name: Seattle
+Asking energy: 10795.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 491
+Station name: Seattle
+Asking energy: 12812.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 492
+Station name: Seattle
+Asking energy: 36722.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 493
+Station name: Seattle
+Asking energy: 22768.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 494
+Station name: Seattle
+Asking energy: 4728.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 495
+Station name: Seattle
+Asking energy: 14092.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 496
+Station name: Seattle
+Asking energy: 10003.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 497
+Station name: Seattle
+Asking energy: 12051.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 498
+Station name: Seattle
+Asking energy: 4167.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 499
+Station name: Seattle
+Asking energy: 10643.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 500
+Station name: Seattle
+Asking energy: 7117.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 501
+Station name: Seattle
+Asking energy: 10441.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 502
+Station name: Seattle
+Asking energy: 7794.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 503
+Station name: Seattle
+Asking energy: 13414.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 504
+Station name: Seattle
+Asking energy: 20677.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 505
+Station name: Seattle
+Asking energy: 10776.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 506
+Station name: Seattle
+Asking energy: 6327.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 507
+Station name: Seattle
+Asking energy: 27641.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 508
+Station name: Seattle
+Asking energy: 15337.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 509
+Station name: Seattle
+Asking energy: 19885.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 510
+Station name: Seattle
+Asking energy: 39447.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 511
+Station name: Seattle
+Asking energy: 1588.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 512
+Station name: Seattle
+Asking energy: 38499.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 513
+Station name: Seattle
+Asking energy: 26670.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 514
+Station name: Seattle
+Asking energy: 37894.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 515
+Station name: Seattle
+Asking energy: 37323.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 516
+Station name: Seattle
+Asking energy: 4461.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 517
+Station name: Seattle
+Asking energy: 38269.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 518
+Station name: Seattle
+Asking energy: 10783.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 519
+Station name: Seattle
+Asking energy: 37763.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 520
+Station name: Seattle
+Asking energy: 20978.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 521
+Station name: Seattle
+Asking energy: 38633.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 522
+Station name: Seattle
+Asking energy: 20777.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 523
+Station name: Seattle
+Asking energy: 10251.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 524
+Station name: Seattle
+Asking energy: 30309.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 525
+Station name: Seattle
+Asking energy: 23237.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 526
+Station name: Seattle
+Asking energy: 34176.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 527
+Station name: Seattle
+Asking energy: 23229.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 528
+Station name: Seattle
+Asking energy: 34368.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 529
+Station name: Seattle
+Asking energy: 9472.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 530
+Station name: Seattle
+Asking energy: 30106.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 531
+Station name: Seattle
+Asking energy: 31414.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 532
+Station name: Seattle
+Asking energy: 4641.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 533
+Station name: Seattle
+Asking energy: 26501.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 180185.0
+Cost: 0.0
 
-Id: 86
-Station name: Miami
+Id: 534
+Station name: Seattle
 Asking energy: 19995.0
-Received energy: 19995.0
-Condition: finished
-Charging time: 1674000
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 99975.0
+Cost: 0.0
 
-Id: 87
-Station name: Miami
-Asking energy: 10621.0
-Received energy: 10621.0
-Condition: finished
-Charging time: 889200
+Id: 535
+Station name: Seattle
+Asking energy: 29414.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 53105.0
+Cost: 0.0
 
-Id: 88
-Station name: Miami
-Asking energy: 31465.0
-Received energy: 31465.0
-Condition: finished
-Charging time: 2634279
+Id: 536
+Station name: Seattle
+Asking energy: 7797.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 157325.0
+Cost: 0.0
 
-Id: 89
-Station name: Miami
-Asking energy: 9946.0
-Received energy: 9946.0
-Condition: finished
-Charging time: 832688
+Id: 537
+Station name: Seattle
+Asking energy: 30016.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 49730.0
+Cost: 0.0
 
-Id: 90
-Station name: Miami
-Asking energy: 26094.0
-Received energy: 26094.0
-Condition: finished
-Charging time: 2184613
+Id: 538
+Station name: Seattle
+Asking energy: 28989.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 130470.0
+Cost: 0.0
 
-Id: 91
-Station name: Miami
-Asking energy: 30132.0
-Received energy: 30132.0
-Condition: finished
-Charging time: 2522679
+Id: 539
+Station name: Seattle
+Asking energy: 9442.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 150660.0
+Cost: 0.0
 
-Id: 92
-Station name: Miami
-Asking energy: 13324.0
-Received energy: 13324.0
-Condition: finished
-Charging time: 1115497
+Id: 540
+Station name: Seattle
+Asking energy: 9582.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 66620.0
+Cost: 0.0
 
-Id: 93
-Station name: Miami
-Asking energy: 16099.0
-Received energy: 16099.0
-Condition: finished
-Charging time: 1347823
+Id: 541
+Station name: Seattle
+Asking energy: 35741.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 80495.0
+Cost: 0.0
 
-Id: 94
-Station name: Miami
-Asking energy: 37688.0
-Received energy: 37688.0
-Condition: finished
-Charging time: 3155274
+Id: 542
+Station name: Seattle
+Asking energy: 29204.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 188440.0
+Cost: 0.0
 
-Id: 95
-Station name: Miami
-Asking energy: 6380.0
-Received energy: 6380.0
-Condition: finished
-Charging time: 534139
+Id: 543
+Station name: Seattle
+Asking energy: 3560.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 31900.0
+Cost: 0.0
 
-Id: 96
-Station name: Miami
-Asking energy: 25010.0
-Received energy: 25010.0
-Condition: finished
-Charging time: 2093860
+Id: 544
+Station name: Seattle
+Asking energy: 24498.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 125050.0
+Cost: 0.0
 
-Id: 97
-Station name: Miami
-Asking energy: 35363.0
-Received energy: 35363.0
-Condition: finished
-Charging time: 2960623
+Id: 545
+Station name: Seattle
+Asking energy: 23810.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 176815.0
+Cost: 0.0
 
-Id: 98
-Station name: Miami
-Asking energy: 33727.0
-Received energy: 33727.0
-Condition: finished
-Charging time: 2823655
+Id: 546
+Station name: Seattle
+Asking energy: 2966.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 168635.0
+Cost: 0.0
 
-Id: 99
-Station name: Miami
-Asking energy: 9891.0
-Received energy: 9891.0
-Condition: finished
-Charging time: 828083
+Id: 547
+Station name: Seattle
+Asking energy: 25473.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 49455.0
+Cost: 0.0
 
-Id: 100
-Station name: Miami
-Asking energy: 22327.0
-Received energy: 22327.0
-Condition: finished
-Charging time: 1869237
+Id: 548
+Station name: Seattle
+Asking energy: 752.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 111635.0
+Cost: 0.0
 
-Id: 101
-Station name: Miami
-Asking energy: 39778.0
-Received energy: 39778.0
-Condition: finished
-Charging time: 3330251
+Id: 549
+Station name: Seattle
+Asking energy: 7545.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 198890.0
+Cost: 0.0
 
-Id: 102
-Station name: Miami
-Asking energy: 18430.0
-Received energy: 18430.0
-Condition: finished
-Charging time: 1542976
+Id: 550
+Station name: Seattle
+Asking energy: 8412.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 92150.0
+Cost: 0.0
 
-Id: 103
-Station name: Miami
-Asking energy: 2453.0
-Received energy: 2453.0
-Condition: finished
-Charging time: 205367
+Id: 551
+Station name: Seattle
+Asking energy: 27960.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 12265.0
+Cost: 0.0
 
-Id: 104
-Station name: Miami
-Asking energy: 7130.0
-Received energy: 7130.0
-Condition: finished
-Charging time: 596930
+Id: 552
+Station name: Seattle
+Asking energy: 30526.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 35650.0
+Cost: 0.0
 
-Id: 105
-Station name: Miami
-Asking energy: 11644.0
-Received energy: 11644.0
-Condition: finished
-Charging time: 974846
+Id: 553
+Station name: Seattle
+Asking energy: 38929.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 58220.0
+Cost: 0.0
 
-Id: 106
-Station name: Miami
-Asking energy: 5936.0
-Received energy: 5936.0
-Condition: finished
-Charging time: 496967
+Id: 554
+Station name: Seattle
+Asking energy: 30206.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 29680.0
+Cost: 0.0
 
-Id: 107
-Station name: Miami
-Asking energy: 26105.0
-Received energy: 26105.0
-Condition: finished
-Charging time: 2185534
+Id: 555
+Station name: Seattle
+Asking energy: 19627.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
 Waiting time: 0
 Maximum waiting time: 0
-Cost: 130525.0
+Cost: 0.0
+
+Id: 556
+Station name: Seattle
+Asking energy: 33280.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 557
+Station name: Seattle
+Asking energy: 24746.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 558
+Station name: Seattle
+Asking energy: 2436.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 559
+Station name: Seattle
+Asking energy: 17766.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 560
+Station name: Seattle
+Asking energy: 39971.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 561
+Station name: Seattle
+Asking energy: 18259.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 562
+Station name: Seattle
+Asking energy: 36851.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 563
+Station name: Seattle
+Asking energy: 35763.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 564
+Station name: Seattle
+Asking energy: 12144.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 565
+Station name: Seattle
+Asking energy: 39944.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 566
+Station name: Seattle
+Asking energy: 38521.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 567
+Station name: Seattle
+Asking energy: 39605.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 568
+Station name: Seattle
+Asking energy: 25255.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 569
+Station name: Seattle
+Asking energy: 10608.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 570
+Station name: Seattle
+Asking energy: 6876.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 571
+Station name: Seattle
+Asking energy: 1667.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 572
+Station name: Seattle
+Asking energy: 10391.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
+
+Id: 573
+Station name: Seattle
+Asking energy: 9522.0
+Received energy: 0.0
+Condition: arrived
+Charging time: 0
+Waiting time: 0
+Maximum waiting time: 0
+Cost: 0.0
 
 ***Discharging events***
 
@@ -1104,12 +4224,12 @@ Cost: 130525.0
 
 ***Energy additions***
 
-Geothermal, 1500.0, 2024/11/20 10:28:31
+Geothermal, 150000.0, 2024/12/04 10:15:49
 
-Nonrenewable, 1500.0, 2024/11/20 10:28:31
+Nonrenewable, 150000.0, 2024/12/04 10:15:49
 
-Wind, 1500.0, 2024/11/20 10:28:31
+Wind, 150000.0, 2024/12/04 10:15:49
 
-Wave, 1500.0, 2024/11/20 10:28:31
+Wave, 150000.0, 2024/12/04 10:15:49
 
 ********************

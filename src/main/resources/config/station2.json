@@ -1,0 +1,20 @@
+{
+  "name": "Seattle",
+  "fastChargers": 8,
+  "slowChargers": 12,
+  "energySources": [
+    "Geothermal",
+    "Nonrenewable",
+    "Wind",
+    "Wave"
+  ],
+  "energyAmounts": [
+    150000,
+    150000,
+    150000,
+    150000
+  ],
+  "arrivalRate": 30,
+  "fastChargingRate": 43000.0,
+  "slowChargingRate": 3000.0
+}

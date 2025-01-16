@@ -24,14 +24,6 @@ public class Main {
             for (int i = 0; i<configFilesList.length; i++){
                 StationSimulator b = new StationSimulator(configFilesList[i], gT);
             }
-
-            //int[] kinds = {4, 4}; //The first should be the number of fast chargers, the second the number of slow chargers
-            //String[] sources = {"Geothermal", "Nonrenewable", "Wind", "Wave"};
-            //double[][] energyAm = new double[4][5];
-            //for (int i = 0; i < 4; i++)
-                //for (int j = 0; j < 5; j++)
-                    //energyAm[i][j] = 1500;
-            //StationSimulator a = new StationSimulator("Miami", kinds, sources, energyAm, 13, gT); //Arrival Rate is cars per hour
         }catch (IOException e){
             System.out.println("The config file cannot be found");
         }
