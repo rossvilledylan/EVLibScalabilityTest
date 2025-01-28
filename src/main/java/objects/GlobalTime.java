@@ -14,7 +14,8 @@ public class GlobalTime {
     }
 
     // Constructor to start at a specified time (ignoring date but keeping current date's day/month/year)
-    public GlobalTime(int hour, int minute, int second, int endHour, int endMinute, int endSecond) {
+    // Clock will start at the specified time, but run for the given number of *seconds*. Yes, convert years into seconds
+    public GlobalTime(int hour, int minute, int second, int runtime) {
         LocalDateTime currentDate = LocalDateTime.now(); // get current date
         LocalDateTime customTime = LocalDateTime.of(
                 currentDate.getYear(),
@@ -25,16 +26,7 @@ public class GlobalTime {
                 second
         );
         this.startInstant = customTime.toInstant(ZoneOffset.UTC); // Convert to Instant
-        currentDate = LocalDateTime.now(); // get current date
-        customTime = LocalDateTime.of(
-                currentDate.getYear(),
-                currentDate.getMonth(),
-                currentDate.getDayOfMonth(),
-                endHour,
-                endMinute,
-                endSecond
-        );
-        this.endInstant = customTime.toInstant(ZoneOffset.UTC);
+        this.endInstant = startInstant.plusSeconds(runtime);
     }
 
     // Method to get the start time as an Instant

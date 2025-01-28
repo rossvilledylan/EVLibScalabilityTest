@@ -1,6 +1,9 @@
 package objects;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class StationStats {
+    private String stationName;
     private int numFullFastCharges;
     private int numFullSlowCharges;
     private int numPartialFastCharges;
@@ -46,6 +49,9 @@ public class StationStats {
         return numSlowBalks;
     }
 
+    public void setStationName(String stationName){
+        this.stationName = stationName;
+    }
     public void setNumFullFastCharges(int numFullFastCharges){
         this.numFullFastCharges = numFullFastCharges;
     }
@@ -72,14 +78,20 @@ public class StationStats {
     }
 
     public void printStats(){
-        System.out.println("At this station, there were:");
-        System.out.println(this.numFullFastCharges + " fast charges that received all desired energy");
-        System.out.println(this.numFullSlowCharges + " slow charges that received all desired energy");
-        System.out.println(this.numPartialFastCharges + " fast charges that received some desired energy");
-        System.out.println(this.numPartialSlowCharges + " slow charges that received some desired energy");
-        System.out.println(this.numNoFastCharges + " fast charges that received no energy");
-        System.out.println(this.numNoSlowCharges + " slow charges that received no energy");
-        System.out.println(this.numFaskBalks + " fast charges that got impatient");
-        System.out.println(this.numSlowBalks + " slow charges that got impatient");
+        try {
+            FileWriter writer = new FileWriter(stationName + ".txt");
+            writer.write("At this station, there were:\n");
+            writer.write(this.numFullFastCharges + " fast charges that received all desired energy\n");
+            writer.write(this.numFullSlowCharges + " slow charges that received all desired energy\n");
+            writer.write(this.numPartialFastCharges + " fast charges that received some desired energy\n");
+            writer.write(this.numPartialSlowCharges + " slow charges that received some desired energy\n");
+            writer.write(this.numNoFastCharges + " fast charges that received no energy\n");
+            writer.write(this.numNoSlowCharges + " slow charges that received no energy\n");
+            writer.write(this.numFaskBalks + " fast charges that got impatient\n");
+            writer.write(this.numSlowBalks + " slow charges that got impatient\n");
+            writer.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }

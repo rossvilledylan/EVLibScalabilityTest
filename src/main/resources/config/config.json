@@ -2,11 +2,10 @@
 	"startTimeHr": 8,
 	"startTimeMin": 0,
 	"startTimeSec": 0,
-	"endTimeHr": 22,
-	"endTimeMin": 0,
-	"endTimeSec": 0,
+	"runtime": 86400,
 	"configFiles": [
 		"station1.json",
-		"station2.json"
+		"station2.json",
+		"station3.json"
 	]
 }
