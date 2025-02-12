@@ -7,35 +7,37 @@ import objects.*;
 import java.time.Instant;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.Random;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ThreadLocalRandom;
 
 import evlib.station.*;
-
-import org.graalvm.polyglot.*;
 
 public class StationSimulator {
     Queue<Event> eventQueue = new PriorityQueue<>(
             (e1, e2) -> e1.getTimestamp().compareTo(e2.getTimestamp())
     ); //This is a priority queue for any kind of event
     ChargingStation station;
-    int fastChargers;
-    int fastInUse;
-    int slowChargers;
-    int slowInUse;
+    private String stationName;
+    private int fastChargers;
+    private int fastInUse;
+    private int slowChargers;
+    private int slowInUse;
+    private boolean energyMechanics;
     Queue<ArrivalEvent> fastQueue = new PriorityQueue<>(
             (e1, e2) -> e1.getTimestamp().compareTo(e2.getTimestamp())
     );
     Queue<ArrivalEvent> slowQueue = new PriorityQueue<>(
             (e1, e2) -> e1.getTimestamp().compareTo(e2.getTimestamp())
     );
-
-    GlobalTime gT;
-    Instant stationTime;
-    private static final Random random = new Random();
+    BlockingQueue<Message> stationToMonitorQueue;
+    BlockingQueue<Message> monitortoStationQueue;
+    private GlobalTime gT;
+    private Instant stationTime;
+    private static final ThreadLocalRandom random = ThreadLocalRandom.current();
 
     StationStats sS = new StationStats();
 
-    public StationSimulator(String configFile, GlobalTime gT){
+    public StationSimulator(String configFile, GlobalTime gT, BlockingQueue<Message> smQ, BlockingQueue<Message> msQ){
         this.gT = gT;
         stationTime = gT.getStartInstant();
         try {
@@ -45,31 +47,46 @@ public class StationSimulator {
             }
             ObjectMapper mapper = new ObjectMapper();
             JsonNode rootNode = mapper.readTree(inputStream);
-            sS.setStationName(rootNode.get("name").asText());
+            stationName = rootNode.get("name").asText();
+            sS.setStationName(stationName);
             fastChargers = rootNode.get("fastChargers").asInt();
             slowChargers = rootNode.get("slowChargers").asInt();
+            energyMechanics = rootNode.get("useEnergyMechanics").asBoolean();
             String[] kinds = new String[fastChargers + slowChargers];
             for (int i = 0; i < fastChargers; i++)
                 kinds[i] = "fast";
             for (int i = fastChargers; i < kinds.length; i++)
                 kinds[i] = "slow";
-            String[] sources = rootNode.get("energySources").traverse(mapper).readValueAs(String[].class);
-            double[] enAm = rootNode.get("energyAmounts").traverse(mapper).readValueAs(double[].class);
-            double[][] energyAmount = new double[sources.length][5];
-            for (int i = 0; i < sources.length; i++)
-                for (int j = 0; j < 5; j++)
-                    energyAmount[i][j] = enAm[i];
-            station = new ChargingStation(rootNode.get("name").asText(), kinds, sources, energyAmount);
-            for (int i = 0; i < sources.length; i++)
-                station.setSpecificAmount(sources[i],enAm[i]);
+            if(energyMechanics) {
+                String[] sources = rootNode.get("energySources").traverse(mapper).readValueAs(String[].class);
+                double[] enAm = rootNode.get("energyAmounts").traverse(mapper).readValueAs(double[].class);
+                double[][] energyAmount = new double[sources.length][5];
+                for (int i = 0; i < sources.length; i++)
+                    for (int j = 0; j < 5; j++)
+                        energyAmount[i][j] = enAm[i];
+                for (int i = 0; i < sources.length; i++)
+                    station.setSpecificAmount(sources[i],enAm[i]);
+                station = new ChargingStation(rootNode.get("name").asText(), kinds, sources, energyAmount);
+                RechargeEvent g = new RechargeEvent(gT.getStartInstant().plusSeconds(7200), enAm);
+                eventQueue.add(g);
+            }else {
+                String[] s = new String[1];
+                s[0] = "null";
+                double[][] eA = new double[1][1];
+                eA[0][0] = 0;
+                station = new ChargingStation(rootNode.get("name").asText(), kinds, s,eA);
+            }
             station.setChargingRateFast(rootNode.get("fastChargingRate").asInt());
             station.setChargingRateSlow(rootNode.get("slowChargingRate").asInt());
             stationSetup();
 
+            stationToMonitorQueue = smQ;
+            monitortoStationQueue = msQ;
+
             GenEvent c = new GenEvent(gT.getStartInstant(), rootNode.get("arrivalRate").asInt()); //Arrival rate is cars per hour
 
             //For simplicity's sake, there will be a two-hour reocurring event that recharges the station to the level it was initially charged with.
-            RechargeEvent g = new RechargeEvent(gT.getStartInstant().plusSeconds(7200), enAm);
+
 
             //Playing with GraalVM
             /*String eq = rootNode.get("arrivalEq").asText(); //The JSON does not need the "y = " part of the equation
@@ -85,10 +102,9 @@ public class StationSimulator {
             //
 
             eventQueue.add(c);
-            eventQueue.add(g);
             eventLoop();
 
-            System.out.println("Whooooopr");
+            //System.out.println("Whooooopr");
 
 
         } catch(IOException e){
@@ -120,61 +136,66 @@ public class StationSimulator {
 
 
     public void eventLoop(){
-        while(!eventQueue.isEmpty()) {
-            Event e = eventQueue.remove();
-            if (e instanceof GenEvent & this.stationTime.isBefore(this.gT.getEndInstant())) { //"isBefore" can be used to check if time is semantically before
-                System.out.println("Gen Event Detected");
-                this.stationTime = e.getTimestamp();
-                System.out.println("The current time is: " + this.stationTime);
-                genEvents(((GenEvent) e).getArrivalRate());
-            } else if (e instanceof ArrivalEvent) {
-                handleArrivalEvent((ArrivalEvent) e);
-            } else if (e instanceof DepartureEvent) {
-                handleDepartureEvent((DepartureEvent) e);
-                switch (((DepartureEvent) e).getStatus()) {
-                    case "Uncharged":
-                        if (((DepartureEvent) e).getChargeType().equals("fast"))
-                            sS.setNumNoFastCharges(sS.getNumNoFastCharges() + 1);
-                        else if (((DepartureEvent) e).getChargeType().equals("slow"))
-                            sS.setNumNoSlowCharges(sS.getNumNoSlowCharges() + 1);
-                        break;
-                    case "Partially Charged":
-                        if (((DepartureEvent) e).getChargeType().equals("fast"))
-                            sS.setNumPartialFastCharges(sS.getNumPartialFastCharges() + 1);
-                        else if (((DepartureEvent) e).getChargeType().equals("slow"))
-                            sS.setNumPartialSlowCharges(sS.getNumPartialSlowCharges() + 1);
-                        break;
-                    case "Fully Charged":
-                        if (((DepartureEvent) e).getChargeType().equals("fast"))
-                            sS.setNumFullFastCharges(sS.getNumFullFastCharges() + 1);
-                        else if (((DepartureEvent) e).getChargeType().equals("slow"))
-                            sS.setNumFullSlowCharges(sS.getNumFullSlowCharges() + 1);
-                        break;
+        while(true) {
+            while (!eventQueue.isEmpty()) {
+                Event e = eventQueue.remove();
+                if (e instanceof GenEvent & this.stationTime.isBefore(this.gT.getEndInstant())) { //"isBefore" can be used to check if time is semantically before
+                    stationToMonitorQueue.add(new TimingMessage(stationTime, stationName));
+                    this.stationTime = e.getTimestamp();
+                    genEvents(((GenEvent) e).getArrivalRate());
+                } else if (e instanceof ArrivalEvent) {
+                    handleArrivalEvent((ArrivalEvent) e);
+                } else if (e instanceof DepartureEvent) {
+                    handleDepartureEvent((DepartureEvent) e);
+                    switch (((DepartureEvent) e).getStatus()) {
+                        case "Uncharged":
+                            if (((DepartureEvent) e).getChargeType().equals("fast"))
+                                sS.setNumNoFastCharges(sS.getNumNoFastCharges() + 1);
+                            else if (((DepartureEvent) e).getChargeType().equals("slow"))
+                                sS.setNumNoSlowCharges(sS.getNumNoSlowCharges() + 1);
+                            break;
+                        case "Partially Charged":
+                            if (((DepartureEvent) e).getChargeType().equals("fast"))
+                                sS.setNumPartialFastCharges(sS.getNumPartialFastCharges() + 1);
+                            else if (((DepartureEvent) e).getChargeType().equals("slow"))
+                                sS.setNumPartialSlowCharges(sS.getNumPartialSlowCharges() + 1);
+                            break;
+                        case "Fully Charged":
+                            if (((DepartureEvent) e).getChargeType().equals("fast"))
+                                sS.setNumFullFastCharges(sS.getNumFullFastCharges() + 1);
+                            else if (((DepartureEvent) e).getChargeType().equals("slow"))
+                                sS.setNumFullSlowCharges(sS.getNumFullSlowCharges() + 1);
+                            break;
+                    }
+                    //System.out.println("A Car requesting " + ((DepartureEvent) e).getChargeType() + " arrived at " + ((DepartureEvent) e).getArrivalTime() + ", was Serviced at " + ((DepartureEvent) e).getServiceTime() + " and left at " + e.getTimestamp() + ". The station time is " + this.stationTime + " and the global end time is " + gT.getEndInstant());
+                } else if (e instanceof RechargeEvent) {
+                    int i = 0;
+                    for (String s : station.getSources()) {
+                        station.setSpecificAmount(s, ((RechargeEvent) e).getCharges()[i]);
+                        i++;
+                        if (i >= station.getSources().length - 1) //There is an added "discharging" source that does not have energy, we need to ignore it
+                            break;
+                    }
+                    //Recharge the station again in two hours
+                    if (e.getTimestamp().plusSeconds(7200).isBefore(gT.getEndInstant())) {
+                        RechargeEvent g = new RechargeEvent(e.getTimestamp().plusSeconds(7200), ((RechargeEvent) e).getCharges());
+                        eventQueue.add(g);
+                    }
                 }
-                //System.out.println("A Car requesting " + ((DepartureEvent) e).getChargeType() + " arrived at " + ((DepartureEvent) e).getArrivalTime() + ", was Serviced at " + ((DepartureEvent) e).getServiceTime() + " and left at " + e.getTimestamp() + ". The station time is " + this.stationTime + " and the global end time is " + gT.getEndInstant());
-            } else if (e instanceof RechargeEvent){
-                int i = 0;
-                for (String s : station.getSources()) {
-                    station.setSpecificAmount(s, ((RechargeEvent) e).getCharges()[i]);
-                    i++;
-                    if(i >= station.getSources().length - 1) //There is an added "discharging" source that does not have energy, we need to ignore it
-                        break;
-                }
-                //Recharge the station again in two hours
-                if(e.getTimestamp().plusSeconds(7200).isBefore(gT.getEndInstant())) {
-                    RechargeEvent g = new RechargeEvent(e.getTimestamp().plusSeconds(7200), ((RechargeEvent) e).getCharges());
-                    eventQueue.add(g);
-                }
+
             }
-            /*
-            System.out.println("There are " + fastQueue.size() + " cars in the fast queue and " + fastInUse + " cars being fast charged");
-            System.out.println("There are " + slowQueue.size() + " cars in the slow queue and " + slowInUse + " cars being slow charged");
-            System.out.println(eventQueue);
-            System.out.println();
-             */
+            stationToMonitorQueue.add(new TimingMessage(stationTime, stationName));
+            try {
+                Message msg = monitortoStationQueue.take();
+                if(msg instanceof TimingMessage)
+                    break;
+                else if (msg instanceof BalkMessage)
+                    eventQueue.add(((BalkMessage) msg).getBalkEvent());
+            }   catch (InterruptedException e){
+                Thread.currentThread().interrupt();
+            }
         }
         sS.printStats();
-        station.genReport("C:/School/Master's Project/OurProject/EVLibScalabilityTest/report.txt");
     }
 
 
@@ -280,35 +301,40 @@ public class StationSimulator {
     public void startCharge(ArrivalEvent a){
         ChargingEvent ev = new ChargingEvent(station, a.getVeh(),a.getChargeDesired(),a.getChargeType());
 
-        //This is a very simplified version of ChargingEvent.java's energy checking formula. Cars never ask for more
-        //energy than they can hold, so it is unnecessary to check.
-        if (a.getChargeDesired() < station.getTotalEnergy()) {
-            ev.setEnergyToBeReceived(a.getChargeDesired());
-        } else {
-            ev.setEnergyToBeReceived(station.getTotalEnergy());
-        }
-        if(ev.getEnergyToBeReceived() == 0) {
-            DepartureEvent b = new DepartureEvent(a.getTimestamp(), a.getTimestamp(), this.stationTime, a.getChargeType(), "Uncharged");
-            eventQueue.add(b);
-            return;
-        }
-
-        ev.setChargingTime(((long) (ev.getEnergyToBeReceived() * 3600000 / station.getChargingRateFast())));
-        ev.setCost(station.calculatePrice(ev));
-        ev.setCondition("ready");
-
-        double sdf;
-        sdf = a.getChargeDesired();
-        //Determine which source of energy the car receives
-        for (String s : station.getSources()) {
-            if (sdf < station.getMap().get(s)) {
-                double ert = station.getMap().get(s) - sdf;
-                station.setSpecificAmount(s, ert);
-                break;
+        if(energyMechanics) {
+            //This is a very simplified version of ChargingEvent.java's energy checking formula. Cars never ask for more
+            //energy than they can hold, so it is unnecessary to check.
+            if (a.getChargeDesired() < station.getTotalEnergy()) {
+                ev.setEnergyToBeReceived(a.getChargeDesired());
             } else {
-                sdf -= station.getMap().get(s);
-                station.setSpecificAmount(s, 0);
+                ev.setEnergyToBeReceived(station.getTotalEnergy());
             }
+            if (ev.getEnergyToBeReceived() == 0) {
+                DepartureEvent b = new DepartureEvent(a.getTimestamp(), a.getTimestamp(), this.stationTime, a.getChargeType(), "Uncharged");
+                eventQueue.add(b);
+                return;
+            }
+            ev.setChargingTime(((long) (ev.getEnergyToBeReceived() * 3600000 / station.getChargingRateFast())));
+            ev.setCost(station.calculatePrice(ev));
+            ev.setCondition("ready");
+            double sdf;
+            sdf = a.getChargeDesired();
+            //Determine which source of energy the car receives
+            for (String s : station.getSources()) {
+                if (sdf < station.getMap().get(s)) {
+                    double ert = station.getMap().get(s) - sdf;
+                    station.setSpecificAmount(s, ert);
+                    break;
+                } else {
+                    sdf -= station.getMap().get(s);
+                    station.setSpecificAmount(s, 0);
+                }
+            }
+        }else {
+            ev.setEnergyToBeReceived(a.getChargeDesired()); //This is due to the fact ChargingEvent will check against the energy in the station, which is 0 when there are no charging mechanics
+            ev.setChargingTime(((long) (ev.getEnergyToBeReceived() * 3600000 / station.getChargingRateFast())));
+            ev.setCost(station.calculatePrice(ev));
+            ev.setCondition("ready");
         }
         
         DepartureEvent b = new DepartureEvent(calcChargingTime(a.getChargeDesired(),ev.getKindOfCharging()), a.getTimestamp(), this.stationTime, a.getChargeType(), ev.getEnergyToBeReceived() < a.getChargeDesired() ? "Partially Charged" : "Fully Charged");
