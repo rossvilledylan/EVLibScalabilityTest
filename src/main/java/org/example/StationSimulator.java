@@ -33,6 +33,7 @@ public class StationSimulator {
     BlockingQueue<Message> monitortoStationQueue;
     private GlobalTime gT;
     private Instant stationTime;
+    private Instant minGlobalTime;
     private static final ThreadLocalRandom random = ThreadLocalRandom.current();
 
     StationStats sS = new StationStats();
@@ -140,8 +141,8 @@ public class StationSimulator {
             while (!eventQueue.isEmpty()) {
                 Event e = eventQueue.remove();
                 if (e instanceof GenEvent & this.stationTime.isBefore(this.gT.getEndInstant())) { //"isBefore" can be used to check if time is semantically before
-                    stationToMonitorQueue.add(new TimingMessage(stationTime, stationName));
                     this.stationTime = e.getTimestamp();
+                    stationToMonitorQueue.add(new TimingMessage(this.stationTime, this.stationName));
                     genEvents(((GenEvent) e).getArrivalRate());
                 } else if (e instanceof ArrivalEvent) {
                     handleArrivalEvent((ArrivalEvent) e);
@@ -182,15 +183,22 @@ public class StationSimulator {
                         eventQueue.add(g);
                     }
                 }
-
+                //Here we check for messages from the Monitor
+                Message msg = monitortoStationQueue.poll();
+                if (msg != null){
+                    if (msg instanceof TimingMessage)
+                        minGlobalTime = msg.getTimestamp();
+                }
             }
-            stationToMonitorQueue.add(new TimingMessage(stationTime, stationName));
+            stationToMonitorQueue.add(new TimingMessage(stationTime, stationName)); //Ensures the Monitor knows what time the station is at
             try {
                 Message msg = monitortoStationQueue.take();
                 if(msg instanceof TimingMessage)
-                    break;
+                    minGlobalTime = msg.getTimestamp();
                 else if (msg instanceof BalkMessage)
                     eventQueue.add(((BalkMessage) msg).getBalkEvent());
+                else
+                    break;
             }   catch (InterruptedException e){
                 Thread.currentThread().interrupt();
             }
@@ -201,7 +209,7 @@ public class StationSimulator {
 
     //This function handles the creation of events. Can be modified if we pass both arrival rate and avg. time between arrivals
     public void genEvents(double arrivalRate){
-        double hourInSeconds = 3600;
+        long hourInSeconds = 3600;
         double avgInterArrivalTime = hourInSeconds/arrivalRate;
         Instant currentTime = this.stationTime;
         // **Determine how often a slow/fast charger is picked**
@@ -221,7 +229,7 @@ public class StationSimulator {
             int remaining = random.nextInt(40001);
             eventQueue.add(new ArrivalEvent(currentTime, random.nextDouble() < 0.67 ? "fast" : "slow",remaining,40000-remaining,40000));
         }
-        GenEvent e = new GenEvent(this.stationTime.plusSeconds((long)hourInSeconds), arrivalRate);
+        GenEvent e = new GenEvent(this.stationTime.plusSeconds(hourInSeconds), arrivalRate);
         eventQueue.add(e);
     }
 
