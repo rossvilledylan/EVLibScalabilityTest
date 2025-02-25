@@ -137,71 +137,81 @@ public class StationSimulator {
 
 
     public void eventLoop(){
-        while(true) {
-            while (!eventQueue.isEmpty()) {
-                Event e = eventQueue.remove();
-                if (e instanceof GenEvent & this.stationTime.isBefore(this.gT.getEndInstant())) { //"isBefore" can be used to check if time is semantically before
-                    this.stationTime = e.getTimestamp();
+        try {
+            while(true) {
+                while (!eventQueue.isEmpty()) {
+                    Event e = eventQueue.remove();
+                    if (e instanceof GenEvent & this.stationTime.isBefore(this.gT.getEndInstant())) { //"isBefore" can be used to check if time is semantically before
+                        this.stationTime = e.getTimestamp();
+                        genEvents(((GenEvent) e).getArrivalRate());
+                    } else if (e instanceof ArrivalEvent) {
+                        handleArrivalEvent((ArrivalEvent) e);
+                    } else if (e instanceof DepartureEvent) {
+                        handleDepartureEvent((DepartureEvent) e);
+                        switch (((DepartureEvent) e).getStatus()) {
+                            case "Uncharged":
+                                if (((DepartureEvent) e).getChargeType().equals("fast"))
+                                    sS.setNumNoFastCharges(sS.getNumNoFastCharges() + 1);
+                                else if (((DepartureEvent) e).getChargeType().equals("slow"))
+                                    sS.setNumNoSlowCharges(sS.getNumNoSlowCharges() + 1);
+                                break;
+                            case "Partially Charged":
+                                if (((DepartureEvent) e).getChargeType().equals("fast"))
+                                    sS.setNumPartialFastCharges(sS.getNumPartialFastCharges() + 1);
+                                else if (((DepartureEvent) e).getChargeType().equals("slow"))
+                                    sS.setNumPartialSlowCharges(sS.getNumPartialSlowCharges() + 1);
+                                break;
+                            case "Fully Charged":
+                                if (((DepartureEvent) e).getChargeType().equals("fast"))
+                                    sS.setNumFullFastCharges(sS.getNumFullFastCharges() + 1);
+                                else if (((DepartureEvent) e).getChargeType().equals("slow"))
+                                    sS.setNumFullSlowCharges(sS.getNumFullSlowCharges() + 1);
+                                break;
+                        }
+                    } else if (e instanceof RechargeEvent) {
+                        int i = 0;
+                        for (String s : station.getSources()) {
+                            station.setSpecificAmount(s, ((RechargeEvent) e).getCharges()[i]);
+                            i++;
+                            if (i >= station.getSources().length - 1) //There is an added "discharging" source that does not have energy, we need to ignore it
+                                break;
+                        }
+                        //Recharge the station again in two hours
+                        if (e.getTimestamp().plusSeconds(7200).isBefore(gT.getEndInstant())) {
+                            RechargeEvent g = new RechargeEvent(e.getTimestamp().plusSeconds(7200), ((RechargeEvent) e).getCharges());
+                            eventQueue.add(g);
+                        }
+                    }
+                    //Here we check for messages from the Monitor
+                    Message msg = monitortoStationQueue.poll();
+                    if (msg != null){
+                        if (msg instanceof TimingMessage)
+                            minGlobalTime = msg.getTimestamp();
+                        else if (msg instanceof  BalkMessage){
+                            eventQueue.add(((BalkMessage) msg).getBalkEvent());
+                            this.stationTime = ((BalkMessage) msg).getBalkEvent().getTimestamp();
+                            //System.out.println("A message from " + msg.getSender() + " and went to " + stationName);
+                        } else if (msg instanceof EndMessage){
+                            monitortoStationQueue.add(msg); //Have to make sure the end message does not get lost
+                        }
+                    }
                     stationToMonitorQueue.add(new TimingMessage(this.stationTime, this.stationName));
-                    genEvents(((GenEvent) e).getArrivalRate());
-                } else if (e instanceof ArrivalEvent) {
-                    handleArrivalEvent((ArrivalEvent) e);
-                } else if (e instanceof DepartureEvent) {
-                    handleDepartureEvent((DepartureEvent) e);
-                    switch (((DepartureEvent) e).getStatus()) {
-                        case "Uncharged":
-                            if (((DepartureEvent) e).getChargeType().equals("fast"))
-                                sS.setNumNoFastCharges(sS.getNumNoFastCharges() + 1);
-                            else if (((DepartureEvent) e).getChargeType().equals("slow"))
-                                sS.setNumNoSlowCharges(sS.getNumNoSlowCharges() + 1);
-                            break;
-                        case "Partially Charged":
-                            if (((DepartureEvent) e).getChargeType().equals("fast"))
-                                sS.setNumPartialFastCharges(sS.getNumPartialFastCharges() + 1);
-                            else if (((DepartureEvent) e).getChargeType().equals("slow"))
-                                sS.setNumPartialSlowCharges(sS.getNumPartialSlowCharges() + 1);
-                            break;
-                        case "Fully Charged":
-                            if (((DepartureEvent) e).getChargeType().equals("fast"))
-                                sS.setNumFullFastCharges(sS.getNumFullFastCharges() + 1);
-                            else if (((DepartureEvent) e).getChargeType().equals("slow"))
-                                sS.setNumFullSlowCharges(sS.getNumFullSlowCharges() + 1);
-                            break;
-                    }
-                    //System.out.println("A Car requesting " + ((DepartureEvent) e).getChargeType() + " arrived at " + ((DepartureEvent) e).getArrivalTime() + ", was Serviced at " + ((DepartureEvent) e).getServiceTime() + " and left at " + e.getTimestamp() + ". The station time is " + this.stationTime + " and the global end time is " + gT.getEndInstant());
-                } else if (e instanceof RechargeEvent) {
-                    int i = 0;
-                    for (String s : station.getSources()) {
-                        station.setSpecificAmount(s, ((RechargeEvent) e).getCharges()[i]);
-                        i++;
-                        if (i >= station.getSources().length - 1) //There is an added "discharging" source that does not have energy, we need to ignore it
-                            break;
-                    }
-                    //Recharge the station again in two hours
-                    if (e.getTimestamp().plusSeconds(7200).isBefore(gT.getEndInstant())) {
-                        RechargeEvent g = new RechargeEvent(e.getTimestamp().plusSeconds(7200), ((RechargeEvent) e).getCharges());
-                        eventQueue.add(g);
-                    }
                 }
-                //Here we check for messages from the Monitor
-                Message msg = monitortoStationQueue.poll();
-                if (msg != null){
-                    if (msg instanceof TimingMessage)
+                stationToMonitorQueue.add(new TimingMessage(gT.getEndInstant(), stationName)); //Ensures the Monitor knows what time the station is at
+
+                    Message msg = monitortoStationQueue.take();
+                    if(msg instanceof TimingMessage)
                         minGlobalTime = msg.getTimestamp();
-                }
+                    else if (msg instanceof BalkMessage) {
+                        eventQueue.add(((BalkMessage) msg).getBalkEvent());
+                        this.stationTime = ((BalkMessage) msg).getBalkEvent().getTimestamp();
+                        //System.out.println(stationName + " has received an event after the end of time");
+                    }
+                    else if (msg instanceof EndMessage)
+                        break;
             }
-            stationToMonitorQueue.add(new TimingMessage(stationTime, stationName)); //Ensures the Monitor knows what time the station is at
-            try {
-                Message msg = monitortoStationQueue.take();
-                if(msg instanceof TimingMessage)
-                    minGlobalTime = msg.getTimestamp();
-                else if (msg instanceof BalkMessage)
-                    eventQueue.add(((BalkMessage) msg).getBalkEvent());
-                else
-                    break;
-            }   catch (InterruptedException e){
-                Thread.currentThread().interrupt();
-            }
+        }   catch (InterruptedException e){
+            Thread.currentThread().interrupt();
         }
         sS.printStats();
     }
@@ -263,7 +273,7 @@ public class StationSimulator {
                 //This if statement is an "impatience" function that balks at 10 minutes
                 ArrivalEvent a = fastQueue.peek();
                 while(!fastQueue.isEmpty() && !a.getTimestamp().plusSeconds(600).isAfter(this.stationTime)) {
-                    fastQueue.remove();
+                    stationToMonitorQueue.add(new BalkMessage(this.stationTime,this.stationName,fastQueue.remove()));
                     sS.setNumFaskBalks(sS.getNumFaskBalks() + 1);
                     if(!fastQueue.isEmpty()){
                         a = fastQueue.peek();
@@ -271,7 +281,8 @@ public class StationSimulator {
                 }
                 if(!fastQueue.isEmpty()){
                     a = fastQueue.remove();
-                    startCharge(a);
+                    if(a.getTimestamp().plusSeconds(600).isBefore(gT.getEndInstant())) //also check the event will finish before the simulation closes
+                        startCharge(a);         // Start charging
                 }
                 else {
                     fastInUse--;
@@ -286,7 +297,7 @@ public class StationSimulator {
                 // Take an event off the slow queue and put it on the charger
                 ArrivalEvent a = slowQueue.peek(); // Peek to check the head without removing it
                 while (!slowQueue.isEmpty() && !a.getTimestamp().plusSeconds(1800).isAfter(this.stationTime)) {
-                    slowQueue.remove(); // Remove only if the condition is not satisfied
+                    stationToMonitorQueue.add(new BalkMessage(this.stationTime,this.stationName,slowQueue.remove()));
                     sS.setNumSlowBalks(sS.getNumSlowBalks()+1);
                     if (!slowQueue.isEmpty()) {
                         a = slowQueue.peek(); // Update 'a' with the next event
@@ -294,7 +305,8 @@ public class StationSimulator {
                 }
                 if (!slowQueue.isEmpty()) { // Check again if the queue has a valid event
                     a = slowQueue.remove(); // Remove the valid event
-                    startCharge(a);         // Start charging
+                    if(a.getTimestamp().plusSeconds(1800).isBefore(gT.getEndInstant())) //also check the event will finish before the simulation closes
+                        startCharge(a);         // Start charging
                 }
                 else {
                     slowInUse--;

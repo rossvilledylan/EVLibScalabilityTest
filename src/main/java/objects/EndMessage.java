@@ -10,8 +10,6 @@ public class EndMessage implements Message{
         this.timestamp = i;
         this.sender = s;
     }
-
-    @Override
     public Instant getTimestamp() {
         return this.timestamp;
     }
