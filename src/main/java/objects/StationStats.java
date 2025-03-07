@@ -2,6 +2,11 @@ package objects;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * A class to keep track of all the statistics a user may be interested in concerning a single Station.
+ * Breaks up the number of charges by their type and if they were completed. Also tracks the number of times an event balked
+ * and how many times the station had to backtrack due to an event balking at a different station.
+ */
 public class StationStats {
     private String stationName;
     private int numFullFastCharges;
@@ -12,7 +17,11 @@ public class StationStats {
     private int numNoSlowCharges;
     private int numFaskBalks;
     private int numSlowBalks;
+    private int numBacktracks;
 
+    /**
+     * Constructor to create a Station Stats object. All stats are set to zero at the beginning of the simulation.
+     */
     public StationStats(){
         this.numFullFastCharges = 0;
         this.numFullSlowCharges = 0;
@@ -22,31 +31,73 @@ public class StationStats {
         this.numNoSlowCharges = 0;
         this.numFaskBalks = 0;
         this.numSlowBalks = 0;
+        this.numBacktracks = 0;
     }
 
+    /**
+     * @return the number of charges on a fast charger that received the full amount of desired energy.
+     */
     public int getNumFullFastCharges() {
         return numFullFastCharges;
     }
+
+    /**
+     * @return the number of charges on a slow charger that received the full amount of desired energy.
+     */
     public int getNumFullSlowCharges(){
         return numFullSlowCharges;
     }
+
+    /**
+     * @return the number of charges on a fast charger that received less than, but more than none of, the full amount
+     * of desired energy.
+     */
     public int getNumPartialFastCharges() {
         return numPartialFastCharges;
     }
+
+    /**
+     * @return the number of charges on a slow charger that received less than, but more than none of, the full amount
+     * of desired energy.
+     */
     public int getNumPartialSlowCharges() {
         return numPartialSlowCharges;
     }
+
+    /**
+     * @return the number of charges on a fast charger that received none of the desired energy.
+     */
     public int getNumNoFastCharges() {
         return numNoFastCharges;
     }
+
+    /**
+     * @return the number of charges on a slow charger that received none of the desired energy.
+     */
     public int getNumNoSlowCharges(){
         return numNoSlowCharges;
     }
+
+    /**
+     * @return the number of events that desired a fast charge but left before getting onto a charger.
+     */
     public int getNumFaskBalks() {
         return numFaskBalks;
     }
+
+    /**
+     * @return the number of events that desired a slow charge but left before getting onto a charger.
+     */
     public int getNumSlowBalks() {
         return numSlowBalks;
+    }
+
+    /**
+     * @return the number of times the station had to backtrack in order to accommodate an event which arrived from a
+     * different station.
+     */
+    public int getNumBacktracks(){
+        return numBacktracks;
     }
 
     public void setStationName(String stationName){
@@ -76,6 +127,9 @@ public class StationStats {
     public void setNumSlowBalks(int numSlowBalks) {
         this.numSlowBalks = numSlowBalks;
     }
+    public void setNumBacktracks(int numBacktracks){
+        this.numBacktracks = numBacktracks;
+    }
 
     public void printStats(){
         try {
@@ -89,6 +143,7 @@ public class StationStats {
             writer.write(this.numNoSlowCharges + " slow charges that received no energy\n");
             writer.write(this.numFaskBalks + " fast charges that got impatient\n");
             writer.write(this.numSlowBalks + " slow charges that got impatient\n");
+            writer.write(this.numBacktracks + " times backtracked\n");
             writer.close();
         } catch (IOException e){
             e.printStackTrace();

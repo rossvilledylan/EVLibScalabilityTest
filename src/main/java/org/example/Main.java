@@ -1,7 +1,7 @@
 package org.example;
 
 import objects.GlobalTime;
-import objects.Message;
+import objects.Message.Message;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.io.InputStream;

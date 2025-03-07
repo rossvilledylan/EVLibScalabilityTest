@@ -5,17 +5,26 @@ import java.io.*;
 import objects.*;
 
 import java.time.Instant;
+import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadLocalRandom;
 
 import evlib.station.*;
+import objects.Event.*;
+import objects.Message.BalkMessage;
+import objects.Message.EndMessage;
+import objects.Message.Message;
+import objects.Message.TimingMessage;
 
 public class StationSimulator {
     Queue<Event> eventQueue = new PriorityQueue<>(
             (e1, e2) -> e1.getTimestamp().compareTo(e2.getTimestamp())
     ); //This is a priority queue for any kind of event
+    Queue<Event> historyQueue = new PriorityQueue<>(
+            (e1, e2) -> e2.getTimestamp().compareTo(e1.getTimestamp())
+    ); //This is a priority queue that tracks the arrival and balk events that have occurred over the course of the simulation. it is REVERSED
     ChargingStation station;
     private String stationName;
     private int fastChargers;
@@ -104,9 +113,8 @@ public class StationSimulator {
 
             eventQueue.add(c);
             eventLoop();
-
-            //System.out.println("Whooooopr");
-
+            //System.out.println(stationName + " has finished\n" + eventQueue + "\n" + monitortoStationQueue + "\nFast in use: " + fastInUse + "\nSlow in use: " + slowInUse);
+            sS.printStats();
 
         } catch(IOException e){
             System.out.println("The requested station file does not exist");
@@ -137,6 +145,7 @@ public class StationSimulator {
 
 
     public void eventLoop(){
+        //System.out.println(stationName + " reporting in");
         try {
             while(true) {
                 while (!eventQueue.isEmpty()) {
@@ -183,37 +192,39 @@ public class StationSimulator {
                         }
                     }
                     //Here we check for messages from the Monitor
-                    Message msg = monitortoStationQueue.poll();
-                    if (msg != null){
-                        if (msg instanceof TimingMessage)
+                    if (!monitortoStationQueue.isEmpty()){
+                        Message msg = monitortoStationQueue.take();
+                        if (msg instanceof TimingMessage) {
                             minGlobalTime = msg.getTimestamp();
-                        else if (msg instanceof  BalkMessage){
-                            eventQueue.add(((BalkMessage) msg).getBalkEvent());
-                            this.stationTime = ((BalkMessage) msg).getBalkEvent().getTimestamp();
-                            //System.out.println("A message from " + msg.getSender() + " and went to " + stationName);
+                            //System.out.println(stationName + " got an updated minimum time " + minGlobalTime + " and its time is " + stationTime);
+                        }
+                        else if (msg instanceof BalkMessage){
+                            backtrack(((BalkMessage) msg));
+                            //eventQueue.add(((BalkMessage) msg).getBalkEvent());
                         } else if (msg instanceof EndMessage){
                             monitortoStationQueue.add(msg); //Have to make sure the end message does not get lost
+                            //System.out.println(stationName + " got a premature EndMessage");
                         }
                     }
                     stationToMonitorQueue.add(new TimingMessage(this.stationTime, this.stationName));
+                    //System.out.println(this.stationName + " is operating in the eventloop\n" + eventQueue + "\nFast in use: " + fastInUse + "\nSlow in use: " + slowInUse);
                 }
-                stationToMonitorQueue.add(new TimingMessage(gT.getEndInstant(), stationName)); //Ensures the Monitor knows what time the station is at
-
+                //System.out.println(stationName + " has exited the eventloop\n"+monitortoStationQueue + "\n" + stationTime + "\n" + minGlobalTime + "\n" + gT.getEndInstant());
+                if(monitortoStationQueue.isEmpty()) //Ensure the simulator is only "done" if its event queue AND its message queue are empty
+                    stationToMonitorQueue.add(new TimingMessage(gT.getEndInstant(),this.stationName)); //Ensure the monitor knows we're done
+                else {
                     Message msg = monitortoStationQueue.take();
-                    if(msg instanceof TimingMessage)
+                    if (msg instanceof TimingMessage)
                         minGlobalTime = msg.getTimestamp();
                     else if (msg instanceof BalkMessage) {
-                        eventQueue.add(((BalkMessage) msg).getBalkEvent());
-                        this.stationTime = ((BalkMessage) msg).getBalkEvent().getTimestamp();
-                        //System.out.println(stationName + " has received an event after the end of time");
-                    }
-                    else if (msg instanceof EndMessage)
-                        break;
+                        backtrack(((BalkMessage) msg));
+                    } else if (msg instanceof EndMessage)
+                        return;
+                }
             }
-        }   catch (InterruptedException e){
+        } catch (InterruptedException e){
             Thread.currentThread().interrupt();
         }
-        sS.printStats();
     }
 
 
@@ -250,8 +261,11 @@ public class StationSimulator {
                 fastQueue.add(a);
             }
             else {
-                fastInUse++;
-                startCharge(a);
+                if(a.getTimestamp().plusSeconds(600).isBefore(gT.getEndInstant())) { //also check the event will finish before the simulation closes
+                    fastInUse++;
+                    historyQueue.add(a); //Since this is going on the charger, add it to the history queue
+                    startCharge(a);
+                }
             }
         }
         else if(a.getChargeType().equals("slow")){
@@ -259,8 +273,11 @@ public class StationSimulator {
                 slowQueue.add(a);
             }
             else {
-                slowInUse++;
-                startCharge(a);
+                if(a.getTimestamp().plusSeconds(1800).isBefore(gT.getEndInstant())) { //also check the event will finish before the simulation closes
+                    slowInUse++;
+                    historyQueue.add(a); //Since this is going on the charger, add it to the history queue
+                    startCharge(a);
+                }
             }
         }
     }
@@ -273,7 +290,8 @@ public class StationSimulator {
                 //This if statement is an "impatience" function that balks at 10 minutes
                 ArrivalEvent a = fastQueue.peek();
                 while(!fastQueue.isEmpty() && !a.getTimestamp().plusSeconds(600).isAfter(this.stationTime)) {
-                    stationToMonitorQueue.add(new BalkMessage(this.stationTime,this.stationName,fastQueue.remove()));
+                    stationToMonitorQueue.add(new BalkMessage(this.stationTime,this.stationName,fastQueue.remove(),false));
+                    historyQueue.add(new BalkEvent(this.stationTime, a)); //Add this event to the history queue as an event that left the station
                     sS.setNumFaskBalks(sS.getNumFaskBalks() + 1);
                     if(!fastQueue.isEmpty()){
                         a = fastQueue.peek();
@@ -281,8 +299,13 @@ public class StationSimulator {
                 }
                 if(!fastQueue.isEmpty()){
                     a = fastQueue.remove();
-                    if(a.getTimestamp().plusSeconds(600).isBefore(gT.getEndInstant())) //also check the event will finish before the simulation closes
+                    if(a.getTimestamp().plusSeconds(600).isBefore(gT.getEndInstant())) { //also check the event will finish before the simulation closes
+                        historyQueue.add(a); //Since this is going on the charger, add it to the history queue
                         startCharge(a);         // Start charging
+                    }
+                    else {
+                        fastInUse--;
+                    }
                 }
                 else {
                     fastInUse--;
@@ -297,7 +320,8 @@ public class StationSimulator {
                 // Take an event off the slow queue and put it on the charger
                 ArrivalEvent a = slowQueue.peek(); // Peek to check the head without removing it
                 while (!slowQueue.isEmpty() && !a.getTimestamp().plusSeconds(1800).isAfter(this.stationTime)) {
-                    stationToMonitorQueue.add(new BalkMessage(this.stationTime,this.stationName,slowQueue.remove()));
+                    stationToMonitorQueue.add(new BalkMessage(this.stationTime,this.stationName,slowQueue.remove(), false));
+                    historyQueue.add(new BalkEvent(this.stationTime, a)); //Add this event to the history queue as an event that left the station
                     sS.setNumSlowBalks(sS.getNumSlowBalks()+1);
                     if (!slowQueue.isEmpty()) {
                         a = slowQueue.peek(); // Update 'a' with the next event
@@ -305,8 +329,13 @@ public class StationSimulator {
                 }
                 if (!slowQueue.isEmpty()) { // Check again if the queue has a valid event
                     a = slowQueue.remove(); // Remove the valid event
-                    if(a.getTimestamp().plusSeconds(1800).isBefore(gT.getEndInstant())) //also check the event will finish before the simulation closes
+                    if (a.getTimestamp().plusSeconds(1800).isBefore(gT.getEndInstant())){ //also check the event will finish before the simulation closes
+                        historyQueue.add(a); //Since this is going on the charger, add it to the history queue
                         startCharge(a);         // Start charging
+                    }
+                    else{
+                        slowInUse--;
+                    }
                 }
                 else {
                     slowInUse--;
@@ -388,5 +417,93 @@ public class StationSimulator {
 
     public Instant calcChargingTime(int charge, String type){
         return this.stationTime.plusSeconds(((long) (charge * 3600 / (type.equals("fast") ? station.getChargingRateFast() : station.getChargingRateSlow()))));
+    }
+
+    /*
+        Backtracking function. Resets station to the state that it was in at a given time or event. Reads events out of the history queue and back into the event queue.
+        Will also handle clearing out the history queue of events that happened before the global minimum time.
+     */
+    public void backtrack(BalkMessage balker){
+        try {
+
+            Instant rewind = balker.getEventToLeave().getTimestamp();
+            //We will have to go through the fastQueue, the slowQueue, and the history queue to add events back to the eventQueue.
+            //Do fast and slow queues first, they are shorter by design
+            PriorityQueue<ArrivalEvent> temporary = new PriorityQueue<>(
+                    (e1, e2) -> e1.getTimestamp().compareTo(e2.getTimestamp())
+            ); //Holds temporary events just in case there are any that happen before the cutoff time for the fast and slow queus
+            Event a;
+            while (!fastQueue.isEmpty()) {
+                a = fastQueue.remove();
+                if (a.getTimestamp().isAfter(rewind))
+                    eventQueue.add(a);
+                else
+                    temporary.add((ArrivalEvent) a);
+            }
+            if (!temporary.isEmpty()) {
+                fastQueue.addAll(temporary);
+                temporary.clear();
+            }
+            while (!slowQueue.isEmpty()) {
+                a = slowQueue.remove();
+                if (a.getTimestamp().isAfter(rewind))
+                    eventQueue.add(a);
+                else
+                    temporary.add((ArrivalEvent) a);
+            }
+            if (!temporary.isEmpty()) {
+                slowQueue.addAll(temporary);
+            }
+            a = historyQueue.peek();
+            // If statement ensures that there is some history to go back to. Otherwise throws exceptions :/
+            // Break instruction ensures that loop is broken when the history queue is empty.
+            if(a!=null) {
+                while (a.getTimestamp().isAfter(balker.getTimestamp())) {
+                    a = historyQueue.remove();
+                    if (a instanceof ArrivalEvent) {
+                        eventQueue.add(a);
+                    } else if (a instanceof BalkEvent) {
+                        monitortoStationQueue.add(new BalkMessage(a.getTimestamp(),this.stationName,((BalkEvent) a).getEventToLeave(),true));
+                    }
+                    if (!historyQueue.isEmpty())
+                        a = historyQueue.peek();
+                    else
+                        break;
+                }
+            }
+            sS.setNumBacktracks(sS.getNumBacktracks() + 1);
+            //If this balkMessage is backtracking to an event because that event is being re-done in another station, then remove it from the queue.
+            //Else, add the event to the queue, as it is an event
+            if(balker.getRetread()) {
+                eventQueue.remove(balker.getEventToLeave());
+                historyQueue.remove(balker.getEventToLeave());
+            }
+            else
+                eventQueue.add(balker.getEventToLeave()); //Make sure the traveling message is put on the queue
+            //Now we have to make sure the number of slots in use is consistent for the time we are backtracking to
+            //The idea is that any Departure events that exist in the eventQueue before the incoming time
+            fastInUse = 0;
+            slowInUse = 0;
+            //eventQueue.removeIf(Event -> Event instanceof DepartureEvent); //Remove all departure events
+            Event firstEvent = eventQueue.peek(); //Get the head of the queue to know what new start time is; a new event could come in before or after the station's current time
+            Iterator<Event> iter = eventQueue.iterator();//https://stackoverflow.com/questions/18448671/how-to-avoid-concurrentmodificationexception-while-removing-elements-from-arr
+            while(iter.hasNext()) {
+                Event event = iter.next();
+                if (event instanceof DepartureEvent) {
+                    if (((DepartureEvent) event).getServiceTime().isAfter(firstEvent.getTimestamp())) //Get only departure events that depict cars that were serviced before the current station time, getting rid of any that are serviced after the new start time.
+                        iter.remove();
+                    else {
+                        if (((DepartureEvent) event).getChargeType().equals("slow"))
+                            slowInUse++;
+                        else if (((DepartureEvent) event).getChargeType().equals("fast"))
+                            fastInUse++;
+                    }
+                }
+            }
+            historyQueue.removeIf(ArrivalEvent -> ArrivalEvent.getTimestamp().isBefore(minGlobalTime)); //remove previous events before global min time
+        }catch(Exception e){
+            System.out.println(stationName + " " + e);
+            e.printStackTrace();
+        }
     }
 }
