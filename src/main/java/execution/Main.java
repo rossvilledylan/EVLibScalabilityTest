@@ -52,6 +52,7 @@ public class Main {
             BlockingQueue<Message> stationToMonitorQueue = new LinkedBlockingQueue<>();
             startTime = System.nanoTime();
             executor.submit(() -> {
+                Thread.currentThread().setName("Monitor");
                 new Monitor(gT, stationToMonitorQueue, monitorToStationQueues);
             });
             for (String config : configFilesList){
@@ -61,8 +62,10 @@ public class Main {
                 }
                 rootNode = mapper.readTree(inputStream);
                 BlockingQueue<Message> monitorToStationQueue = new LinkedBlockingQueue<>();
-                monitorToStationQueues.put(rootNode.get("name").asText(),monitorToStationQueue);
+                String stationName = rootNode.get("name").asText();
+                monitorToStationQueues.put(stationName,monitorToStationQueue);
                 executor.submit(() -> {
+                    Thread.currentThread().setName(stationName);
                     new StationSimulator(config, gT, stationToMonitorQueue, monitorToStationQueue);
                 });
             }
@@ -78,6 +81,7 @@ public class Main {
             writer.write("The Serial Version took " + serialDuration + " nanoseconds\n");
             writer.write("The Parallel Version took " + pDuration + " nanoseconds");
             writer.close();
+            System.out.println(pDuration);
         }catch (IOException e){
             System.out.println("The config file cannot be found");
         }

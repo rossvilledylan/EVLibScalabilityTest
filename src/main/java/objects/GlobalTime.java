@@ -3,14 +3,18 @@ package objects;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.LocalDateTime;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * A class that keeps track of the Global Simulated Time. This is necessary to inform the Stations and the Monitor of the
- * exact moment the Simulation is meant to start and to end, in terms of simulated time.
+ * exact moment the Simulation is meant to start and to end, in terms of simulated time. The Global Time object also tracks
+ * the Global Minimum time, as it is an object shared by all Stations and the Monitor.
  */
 public class GlobalTime {
     private final Instant startInstant;
     private final Instant endInstant;
+    private Instant globalMinimumTime;
+    private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
     /**
      * Constructor to create a Global Time object. The simulation time will start at the exact moment of real time the
@@ -20,6 +24,7 @@ public class GlobalTime {
     public GlobalTime(int runtime){
         this.startInstant = LocalDateTime.now().toInstant(ZoneOffset.UTC);
         this.endInstant = startInstant.plusSeconds(runtime);
+        this.globalMinimumTime = this.startInstant;
     }
 
     /**
@@ -42,6 +47,7 @@ public class GlobalTime {
         );
         this.startInstant = customTime.toInstant(ZoneOffset.UTC); // Convert to Instant
         this.endInstant = startInstant.plusSeconds(runtime);
+        this.globalMinimumTime = this.startInstant;
     }
 
     /**
@@ -63,5 +69,31 @@ public class GlobalTime {
      */
     public Instant getEndInstant(){
         return endInstant;
+    }
+
+    /**
+     * Function to return the Global Minimum Time. Locks when a Station or the Monitor is trying to read it.
+     * @return the Global Minimum Time.
+     */
+    public Instant getGlobalMinimumTime(){
+        lock.readLock().lock();
+        try {
+            return globalMinimumTime;
+        } finally {
+            lock.readLock().unlock();
+        }
+    }
+
+    /**
+     * Function to set a new Global Minimum Time. Locks when the Monitor is trying to edit it.
+     * @param time the new Global Minimum Time.
+     */
+    public void setGlobalMinimumTime(Instant time){
+        lock.writeLock().lock();
+        try{
+            this.globalMinimumTime = time;
+        } finally {
+            lock.writeLock().unlock();
+        }
     }
 }

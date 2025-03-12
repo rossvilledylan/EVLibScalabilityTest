@@ -23,8 +23,7 @@ import objects.Message.TimingMessage;
  * simulation, complete with its own arrival rate, concept of time and message queue to communicate with the Monitor.
  * The Station Simulator is in charge of creating and perpetuating the simulation that is described to it; it uses a single
  * loop to handle a number of events. It also keeps track of certain statistics about the running of these events. The Station
- * Simulator maintains constant communication with the Monitor to keep track of the Minimum Global Time, as well as send
- * Arrival Events which have balked to other Stations.
+ * Simulator maintains communication with the Monitor to send Arrival Events which have balked to other Stations.
  */
 public class StationSimulator {
     Queue<Event> eventQueue = new PriorityQueue<>(
@@ -50,7 +49,6 @@ public class StationSimulator {
     BlockingQueue<Message> monitortoStationQueue;
     private GlobalTime gT;
     private Instant stationTime;
-    private Instant minGlobalTime;
     private static final ThreadLocalRandom random = ThreadLocalRandom.current();
 
     StationStats sS = new StationStats();
@@ -142,12 +140,12 @@ public class StationSimulator {
     /**
      * Depreciated constructor to create a Station Simulator, used for creating a Serial simulator. No longer functions
      * with other functions in the file, and does not interact with Monitor.
-     * @param name
-     * @param types
-     * @param sources
-     * @param energyAmount
-     * @param arrivalRate
-     * @param gT
+     * @param name the Station's name.
+     * @param types the names of the types of energy the Station can use.
+     * @param sources the potential sources from which the Station can draw energy.
+     * @param energyAmount the amounts of energy the Station contains, ordered by its type.
+     * @param arrivalRate the arrival rate of cars to the station.
+     * @param gT the Global Time object.
      */
     public StationSimulator(String name, int[] types, String[] sources, double[][] energyAmount, double arrivalRate, GlobalTime gT){ //Can pass arguments now, I guess
         this.gT = gT;
@@ -161,7 +159,7 @@ public class StationSimulator {
         for (int i = fastChargers; i < kinds.length; i++)
             kinds[i] = "slow";
         station = new ChargingStation(name, kinds, sources, energyAmount);
-        station.setSpecificAmount("wind",100000);//Naieve setup
+        station.setSpecificAmount("wind",100000);//Naive setup
         stationSetup();
 
         GenEvent c = new GenEvent(gT.getStartInstant(), arrivalRate); //Create our first eventGenerator event
@@ -224,11 +222,7 @@ public class StationSimulator {
                     //Here we check for messages from the Monitor
                     if (!monitortoStationQueue.isEmpty()){
                         Message msg = monitortoStationQueue.take();
-                        if (msg instanceof TimingMessage) {
-                            minGlobalTime = msg.getTimestamp();
-                            //System.out.println(stationName + " got an updated minimum time " + minGlobalTime + " and its time is " + stationTime);
-                        }
-                        else if (msg instanceof BalkMessage){
+                        if (msg instanceof BalkMessage){
                             backtrack(((BalkMessage) msg));
                             //eventQueue.add(((BalkMessage) msg).getBalkEvent());
                         } else if (msg instanceof EndMessage){
@@ -244,9 +238,7 @@ public class StationSimulator {
                     stationToMonitorQueue.add(new TimingMessage(gT.getEndInstant(),this.stationName)); //Ensure the monitor knows we're done
                 else {
                     Message msg = monitortoStationQueue.take();
-                    if (msg instanceof TimingMessage)
-                        minGlobalTime = msg.getTimestamp();
-                    else if (msg instanceof BalkMessage) {
+                    if (msg instanceof BalkMessage) {
                         backtrack(((BalkMessage) msg));
                     } else if (msg instanceof EndMessage)
                         return;
@@ -570,7 +562,7 @@ public class StationSimulator {
                     }
                 }
             }
-            historyQueue.removeIf(ArrivalEvent -> ArrivalEvent.getTimestamp().isBefore(minGlobalTime)); //remove previous events before global min time
+            historyQueue.removeIf(ArrivalEvent -> ArrivalEvent.getTimestamp().isBefore(gT.getGlobalMinimumTime())); //remove previous events before global min time
         }catch(Exception e){
             System.out.println(stationName + " " + e);
             e.printStackTrace();

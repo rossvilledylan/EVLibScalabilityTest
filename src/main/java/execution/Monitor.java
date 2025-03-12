@@ -25,7 +25,6 @@ public class Monitor {
     private final ConcurrentHashMap<String, BlockingQueue<Message>> monitorToStationQueues;
     private final HashMap<String, Instant> stationTimesheet;
     private final HashMap<ArrivalEvent, String> eventMapping; //This hashmap tracks where *arrival events* specifically are sent when a balk message is received.
-    private Instant minGlobalTime;
     private static final ThreadLocalRandom random = ThreadLocalRandom.current();
 
     /**
@@ -38,7 +37,6 @@ public class Monitor {
         this.gT = gT;
         this.stationToMonitorQueue = s;
         this.monitorToStationQueues = m;
-        this.minGlobalTime = gT.getStartInstant();
         this.stationTimesheet = new HashMap<>();
         this.eventMapping = new HashMap<>();
         monitorLoop();
@@ -48,7 +46,7 @@ public class Monitor {
      * The main loop that keeps the Monitor running. This loop checks for messages from the shared Station to Monitor Queue, then
      * handles those messages based on their type.
      * For timing messages, the Monitor updates its record of the Station sending that timing message's time. It then recalculates
-     * the Minimum Global Time, and if that time changed, broadcasts it to all Stations.
+     * the Minimum Global Time, and if that time changed, modifies it in the Global Time object.
      * For Balking Messages, the Monitor first determines the type of Balking message, then handles accordingly. In both cases
      * it sends a message to a Station informing that Station of where to back up to.
      * The Monitor also decides when the simulation is finished, and sends a special message out to all Stations to tell
@@ -56,17 +54,14 @@ public class Monitor {
      */
     public void monitorLoop(){
         try {
-            while(minGlobalTime.isBefore(gT.getEndInstant()) || checkMessages()){
+            while(gT.getGlobalMinimumTime().isBefore(gT.getEndInstant()) || checkMessages()){
                 Message msg = stationToMonitorQueue.take();
                 if(msg instanceof TimingMessage) {
                     stationTimesheet.put(msg.getSender(), msg.getTimestamp()); //This ensures that a station essentially adds itself, as the first action a station takes in its event loop is to send a message to the monitor
-                    Instant prevMinGlobalTime = minGlobalTime;
-                    minGlobalTime = Collections.min(stationTimesheet.values());
-                    if (minGlobalTime != null && !minGlobalTime.equals(prevMinGlobalTime)) {
-                        broadcastGlobalMin(minGlobalTime);
+                    Instant nextMinGlobalTime = Collections.min(stationTimesheet.values());
+                    if (nextMinGlobalTime != null && !gT.getGlobalMinimumTime().equals(nextMinGlobalTime)) {
+                        gT.setGlobalMinimumTime(nextMinGlobalTime);
                         //System.out.println("From the Monitor: global timesheet is as follows:\n" + stationTimesheet.keySet() + "\n" + stationTimesheet.values() + " " + minGlobalTime);
-                    }else{
-                        minGlobalTime = prevMinGlobalTime;
                     }
                 }else if (msg instanceof BalkMessage){
                     if(((BalkMessage) msg).getRetread()) { //This handles messages needing to be re-done if a station backtracks
@@ -106,14 +101,5 @@ public class Monitor {
             if(!q.isEmpty())
                 return true;
         return false;
-    }
-
-    /**
-     * Broadcasts the Global Minimum Time to every Station.
-     * @param min the Global Minimum Time as an instant.
-     */
-    private void broadcastGlobalMin(Instant min){
-        for (BlockingQueue<Message> q : monitorToStationQueues.values())
-                q.add(new TimingMessage(min,"Monitor"));
     }
 }
