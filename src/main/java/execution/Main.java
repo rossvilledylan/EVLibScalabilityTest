@@ -1,4 +1,4 @@
-package org.example;
+package execution;
 
 import objects.GlobalTime;
 import objects.Message.Message;
@@ -12,7 +12,19 @@ import java.util.concurrent.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
+/**
+ * Main class that handles setup and execution of Simulation.
+ */
 public class Main {
+    /**
+     * Reads from the config.json file to determine the runtime of the Simulation and the locations of each station file
+     * from which particular data about the Stations to be simulated can be found. The main uses an Executor Service to
+     * spawn off the Monitor process, the Monitor's message queues that go between the Monitor and Stations, and each Station
+     * as its own spawned process. After spawning off all necessary processes, the main waits on all processes to finish.
+     * The main also times the execution and records that value in a file after execution.
+     * @param args the arguments from command line. Not currently relevant.
+     */
     public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         //Master config file that points to individual station configs that are passed to stations
@@ -40,7 +52,7 @@ public class Main {
             BlockingQueue<Message> stationToMonitorQueue = new LinkedBlockingQueue<>();
             startTime = System.nanoTime();
             executor.submit(() -> {
-                new Monitor(gT, stationToMonitorQueue, monitorToStationQueues, configFilesList.length);
+                new Monitor(gT, stationToMonitorQueue, monitorToStationQueues);
             });
             for (String config : configFilesList){
                 inputStream = Main.class.getClassLoader().getResourceAsStream("config/"+config);

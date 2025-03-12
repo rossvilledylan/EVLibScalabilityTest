@@ -100,37 +100,83 @@ public class StationStats {
         return numBacktracks;
     }
 
+    /**
+     * Sets the station name for this stat-taking object.
+     * @param stationName the new name of the station being tracked.
+     */
     public void setStationName(String stationName){
         this.stationName = stationName;
     }
+
+    /**
+     * @param numFullFastCharges the number of charges on a fast charger that received the full amount of desired energy.
+     */
     public void setNumFullFastCharges(int numFullFastCharges){
         this.numFullFastCharges = numFullFastCharges;
     }
+
+    /**
+     * @param numFullSlowCharges the number of charges on a slow charger that received the full amount of desired energy.
+     */
     public void setNumFullSlowCharges(int numFullSlowCharges) {
         this.numFullSlowCharges = numFullSlowCharges;
     }
+
+    /**
+     * @param numPartialFastCharges the number of charges on a fast charger that received less than, but more than none of, the full amount
+     * of desired energy.
+     */
     public void setNumPartialFastCharges(int numPartialFastCharges) {
         this.numPartialFastCharges = numPartialFastCharges;
     }
+
+    /**
+     * @param numPartialSlowCharges the number of charges on a slow charger that received less than, but more than none of, the full amount
+     * of desired energy.
+     */
     public void setNumPartialSlowCharges(int numPartialSlowCharges) {
         this.numPartialSlowCharges = numPartialSlowCharges;
     }
+
+    /**
+     * @param numNoFastCharges the number of charges on a fast charger that received none of the desired energy.
+     */
     public void setNumNoFastCharges(int numNoFastCharges) {
         this.numNoFastCharges = numNoFastCharges;
     }
+
+    /**
+     * @param numNoSlowCharges the number of charges on a slow charger that received none of the desired energy.
+     */
     public void setNumNoSlowCharges(int numNoSlowCharges) {
         this.numNoSlowCharges = numNoSlowCharges;
     }
+
+    /**
+     * @param numFaskBalks the number of events that desired a fast charge but left before getting onto a charger.
+     */
     public void setNumFaskBalks(int numFaskBalks) {
         this.numFaskBalks = numFaskBalks;
     }
+
+    /**
+     * @param numSlowBalks the number of events that desired a slow charge but left before getting onto a charger.
+     */
     public void setNumSlowBalks(int numSlowBalks) {
         this.numSlowBalks = numSlowBalks;
     }
+
+    /**
+     * @param numBacktracks the number of times the station had to backtrack in order to accommodate an event which arrived from a
+     * different station.
+     */
     public void setNumBacktracks(int numBacktracks){
         this.numBacktracks = numBacktracks;
     }
 
+    /**
+     * Prints the statistics captured during the runtime of a station to a file.
+     */
     public void printStats(){
         try {
             FileWriter writer = new FileWriter(stationName + ".txt");

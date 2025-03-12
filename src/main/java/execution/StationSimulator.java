@@ -1,4 +1,4 @@
-package org.example;
+package execution;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.io.*;
@@ -18,6 +18,14 @@ import objects.Message.EndMessage;
 import objects.Message.Message;
 import objects.Message.TimingMessage;
 
+/**
+ * The Station Simulator class does the most work out of all the classes. It represents a single Charging Station within the
+ * simulation, complete with its own arrival rate, concept of time and message queue to communicate with the Monitor.
+ * The Station Simulator is in charge of creating and perpetuating the simulation that is described to it; it uses a single
+ * loop to handle a number of events. It also keeps track of certain statistics about the running of these events. The Station
+ * Simulator maintains constant communication with the Monitor to keep track of the Minimum Global Time, as well as send
+ * Arrival Events which have balked to other Stations.
+ */
 public class StationSimulator {
     Queue<Event> eventQueue = new PriorityQueue<>(
             (e1, e2) -> e1.getTimestamp().compareTo(e2.getTimestamp())
@@ -47,6 +55,15 @@ public class StationSimulator {
 
     StationStats sS = new StationStats();
 
+    /**
+     * Constructor to create a Station Simulator. Reads data from the config file in order to set up a ChargingStation object,
+     * which is used to simulate the charging of cars. Also utilizes data from the config file to specialize its simulation,
+     * such as the arrival rate, whether to use limited energy mechanics, and the unique name of the Station.
+     * @param configFile the name of the configuration file which is read to set up the Station and its simulation details.
+     * @param gT the Global Time object.
+     * @param smQ the message queue which goes from all Stations to the Monitor.
+     * @param msQ the message queue which goes from the Monitor to this Station.
+     */
     public StationSimulator(String configFile, GlobalTime gT, BlockingQueue<Message> smQ, BlockingQueue<Message> msQ){
         this.gT = gT;
         stationTime = gT.getStartInstant();
@@ -122,7 +139,16 @@ public class StationSimulator {
     }
 
 
-    //StationSimulator constructor for if there is a specific set of values you want passed
+    /**
+     * Depreciated constructor to create a Station Simulator, used for creating a Serial simulator. No longer functions
+     * with other functions in the file, and does not interact with Monitor.
+     * @param name
+     * @param types
+     * @param sources
+     * @param energyAmount
+     * @param arrivalRate
+     * @param gT
+     */
     public StationSimulator(String name, int[] types, String[] sources, double[][] energyAmount, double arrivalRate, GlobalTime gT){ //Can pass arguments now, I guess
         this.gT = gT;
         stationTime = gT.getStartInstant(); //Set the station's current time
@@ -143,7 +169,11 @@ public class StationSimulator {
         eventLoop(); //Begin the event loop
     }
 
-
+    /**
+     * Primary event loop of the Simulator. Iterates through a queue of events, handling each event according to its type.
+     * At the end of each iteration, checks for messages from the Monitor, and acts on those messages. When the event queue
+     * is empty, the event loop will hold for messages from the Monitor. When an End Message is reached, the loop is broken.
+     */
     public void eventLoop(){
         //System.out.println(stationName + " reporting in");
         try {
@@ -227,8 +257,14 @@ public class StationSimulator {
         }
     }
 
-
-    //This function handles the creation of events. Can be modified if we pass both arrival rate and avg. time between arrivals
+    /**
+     * This function handles the creation of events. It takes an arrival rate, then calculates an average enter-arrival time,
+     * which is used to decide, with a degree of randomness, when each event will be placed in the Event Queue. The properties
+     * of every Arrival Event are described here as well, detailing their battery life, the amount of energy they want, and
+     * what kind of charge they want.
+     * @param arrivalRate the arrival rate of the current Station. This value is best described as the number of cars
+     *                    that arrive per hour.
+     */
     public void genEvents(double arrivalRate){
         long hourInSeconds = 3600;
         double avgInterArrivalTime = hourInSeconds/arrivalRate;
@@ -254,6 +290,13 @@ public class StationSimulator {
         eventQueue.add(e);
     }
 
+    /**
+     * Handles a given Arrival Event when it reaches the front of the Event Queue. Determines the type of charge desired,
+     * then if the event will have to wait for a charger. If all charging slots are filled, then it is placed on a waiting queue.
+     * If not, it is placed onto a charging slot, its presence is backed up into the history queue, and the number of relevant
+     * charging slots in use is incremented.
+     * @param a the Arrival Event that is being handled.
+     */
     public void handleArrivalEvent(ArrivalEvent a){
         this.stationTime = a.getTimestamp();
         if(a.getChargeType().equals("fast")){
@@ -282,6 +325,17 @@ public class StationSimulator {
         }
     }
 
+    /**
+     * Handles a given Departure Event when it reaches the front of the Event Queue. This function is responsible for
+     * maintaining the state of the fast and slow queues, as well as the statistics being recorded for the Station.
+     * When a car leaves the Station, the function will first check if there is a car on the relevant queue (fast/slow) that is
+     * waiting for a slot; it will then check to see if an arbitrary amount of time has passed according to the Station's
+     * time compared to the time the car arrived; if the car has "waited" too long, it will Balk and leave the station.
+     * Otherwise, the waiting car will be given a charger and placed on the history queue. If there are no cars waiting or
+     * all have balked, then the number of relevant charging slots in use is decremented.
+     * This function also handles the majority of stats-taking, recording the number and state of each charge type.
+     * @param d the Departure Event that is being handled.
+     */
     public void handleDepartureEvent(DepartureEvent d){
         this.stationTime = d.getTimestamp();
         if(d.getChargeType().equals("fast")){
@@ -347,6 +401,13 @@ public class StationSimulator {
         }
     }
 
+    /**
+     * Simulates the actual charging of a car based on the information provided by an Arrival Event. Has two potential modes:
+     * with energy mechanics on, simulating a Station with limited amounts of power, or with energy mechanics off, where
+     * energy is unlimited. After charging the car, a Departure Event is placed on the Event Queue to depict the car leaving
+     * the Station.
+     * @param a the Arrival Event which is getting its charge.
+     */
     public void startCharge(ArrivalEvent a){
         ChargingEvent ev = new ChargingEvent(station, a.getVeh(),a.getChargeDesired(),a.getChargeType());
 
@@ -392,6 +453,10 @@ public class StationSimulator {
         ev.execution();
     }
 
+    /**
+     * Sets up elements of the Charging Station object that are not defined by the config file, but must be defined in order
+     * to use the Charging Station object. Basic information taken from author's examples on github.
+     */
     public void stationSetup(){
         //Taken from github
         DisCharger dsc = new DisCharger(station);
@@ -411,21 +476,26 @@ public class StationSimulator {
         station.setDisUnitPrice(5);
         station.setInductivePrice(3);
         station.setExchangePrice(20);
-
-        return;
     }
 
+    /**
+     * Calculates the time a particular Arrival Event will leave the Station as a Java Instant.
+     * @param charge the amount of charge desired by the Arrival Event.
+     * @param type the type of charge desired by the Arrival Event.
+     * @return the timestamp the Arrival Event will leave the Station after receiving its charge.
+     */
     public Instant calcChargingTime(int charge, String type){
         return this.stationTime.plusSeconds(((long) (charge * 3600 / (type.equals("fast") ? station.getChargingRateFast() : station.getChargingRateSlow()))));
     }
 
-    /*
-        Backtracking function. Resets station to the state that it was in at a given time or event. Reads events out of the history queue and back into the event queue.
-        Will also handle clearing out the history queue of events that happened before the global minimum time.
+    /**
+     * Backtracking function. Resets station to the state that it was in at a given time or event. Reads events out of
+     * the history queue and back into the event queue. Will also handle clearing out the history queue of events that
+     * happened before the global minimum time.
+     * @param balker the message that contains the Arrival Event which is being backtracked to.
      */
     public void backtrack(BalkMessage balker){
         try {
-
             Instant rewind = balker.getEventToLeave().getTimestamp();
             //We will have to go through the fastQueue, the slowQueue, and the history queue to add events back to the eventQueue.
             //Do fast and slow queues first, they are shorter by design

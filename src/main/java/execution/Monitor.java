@@ -1,4 +1,4 @@
-package org.example;
+package execution;
 
 import objects.*;
 import objects.Event.ArrivalEvent;
@@ -13,6 +13,12 @@ import java.util.concurrent.*;
 import java.util.HashMap;
 import java.util.Collections;
 
+/**
+ * This class acts as a central "hub" managing and observing the Station Simulator objects. It keeps a track of the Global
+ * Minimum Time, which is the lowest time that all Stations have reached, and is in charge of ending the simulation when all
+ * Stations report that they reach the Global End Time. The Monitor also handles moving Arrival Events between stations when
+ * one balks.
+ */
 public class Monitor {
     private final GlobalTime gT;
     private final BlockingQueue<Message> stationToMonitorQueue;
@@ -22,7 +28,13 @@ public class Monitor {
     private Instant minGlobalTime;
     private static final ThreadLocalRandom random = ThreadLocalRandom.current();
 
-    public Monitor (GlobalTime gT, BlockingQueue<Message> s, ConcurrentHashMap<String, BlockingQueue<Message>> m, int n){
+    /**
+     * Constructor function to create a Monitor object.
+     * @param gT the Global Time object which tracks the beginning and end time of the simulation.
+     * @param s the Blocking Queue used by all Stations to communicate with the Monitor
+     * @param m a hashmap of message queues associating the names of stations to the queue that they use to listen to messages from the Monitor.
+     */
+    public Monitor (GlobalTime gT, BlockingQueue<Message> s, ConcurrentHashMap<String, BlockingQueue<Message>> m){
         this.gT = gT;
         this.stationToMonitorQueue = s;
         this.monitorToStationQueues = m;
@@ -32,6 +44,16 @@ public class Monitor {
         monitorLoop();
     }
 
+    /**
+     * The main loop that keeps the Monitor running. This loop checks for messages from the shared Station to Monitor Queue, then
+     * handles those messages based on their type.
+     * For timing messages, the Monitor updates its record of the Station sending that timing message's time. It then recalculates
+     * the Minimum Global Time, and if that time changed, broadcasts it to all Stations.
+     * For Balking Messages, the Monitor first determines the type of Balking message, then handles accordingly. In both cases
+     * it sends a message to a Station informing that Station of where to back up to.
+     * The Monitor also decides when the simulation is finished, and sends a special message out to all Stations to tell
+     * them the stop.
+     */
     public void monitorLoop(){
         try {
             while(minGlobalTime.isBefore(gT.getEndInstant()) || checkMessages()){
@@ -72,24 +94,24 @@ public class Monitor {
         }
     }
 
-    public boolean checkTiming(){
-        if(stationTimesheet.isEmpty()) //Prevents Monitor from ending if Stations haven't been made in main yet
-            return false;
-        for (Instant time: stationTimesheet.values()) {
-            if (time.isBefore(gT.getEndInstant()))
-                return false;
-        }
-        return true;
-    }
+    /**
+     * This function checks the queue between the Monitor and every Station to determine if any Station has a message it has
+     * not yet handled.
+     * @return false if there are no outstanding messages to any Station, and true if there are.
+     */
     public boolean checkMessages(){//ensures that there are no outstanding messages in each station's queue
         if(monitorToStationQueues.isEmpty())
-            return false;
+            return true;
         for (BlockingQueue<Message> q : monitorToStationQueues.values())
-            if(q.isEmpty())
-                return false;
-        return true;
+            if(!q.isEmpty())
+                return true;
+        return false;
     }
 
+    /**
+     * Broadcasts the Global Minimum Time to every Station.
+     * @param min the Global Minimum Time as an instant.
+     */
     private void broadcastGlobalMin(Instant min){
         for (BlockingQueue<Message> q : monitorToStationQueues.values())
                 q.add(new TimingMessage(min,"Monitor"));
