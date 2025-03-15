@@ -81,7 +81,8 @@ public class Main {
             writer.write("The Serial Version took " + serialDuration + " nanoseconds\n");
             writer.write("The Parallel Version took " + pDuration + " nanoseconds");
             writer.close();
-            System.out.println(pDuration);
+            float time = (float) pDuration / 1000000000;
+            System.out.println(time);
         }catch (IOException e){
             System.out.println("The config file cannot be found");
         }

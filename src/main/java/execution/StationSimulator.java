@@ -26,32 +26,31 @@ import objects.Message.TimingMessage;
  * Simulator maintains communication with the Monitor to send Arrival Events which have balked to other Stations.
  */
 public class StationSimulator {
-    Queue<Event> eventQueue = new PriorityQueue<>(
+    private Queue<Event> eventQueue = new PriorityQueue<>(
             (e1, e2) -> e1.getTimestamp().compareTo(e2.getTimestamp())
     ); //This is a priority queue for any kind of event
-    Queue<Event> historyQueue = new PriorityQueue<>(
+    private Queue<Event> historyQueue = new PriorityQueue<>(
             (e1, e2) -> e2.getTimestamp().compareTo(e1.getTimestamp())
     ); //This is a priority queue that tracks the arrival and balk events that have occurred over the course of the simulation. it is REVERSED
-    ChargingStation station;
+    private ChargingStation station;
     private String stationName;
     private int fastChargers;
     private int fastInUse;
     private int slowChargers;
     private int slowInUse;
     private boolean energyMechanics;
-    Queue<ArrivalEvent> fastQueue = new PriorityQueue<>(
+    private Queue<ArrivalEvent> fastQueue = new PriorityQueue<>(
             (e1, e2) -> e1.getTimestamp().compareTo(e2.getTimestamp())
     );
-    Queue<ArrivalEvent> slowQueue = new PriorityQueue<>(
+    private Queue<ArrivalEvent> slowQueue = new PriorityQueue<>(
             (e1, e2) -> e1.getTimestamp().compareTo(e2.getTimestamp())
     );
-    BlockingQueue<Message> stationToMonitorQueue;
-    BlockingQueue<Message> monitortoStationQueue;
+    private BlockingQueue<Message> stationToMonitorQueue;
+    private BlockingQueue<Message> monitortoStationQueue;
     private GlobalTime gT;
     private Instant stationTime;
     private static final ThreadLocalRandom random = ThreadLocalRandom.current();
-
-    StationStats sS = new StationStats();
+    private StationStats sS = new StationStats();
 
     /**
      * Constructor to create a Station Simulator. Reads data from the config file in order to set up a ChargingStation object,
@@ -274,7 +273,7 @@ public class StationSimulator {
             // Create a new ArrivalEvent and add it to the list
             // As of 11/14, arrival events are more likely to be fast than slow
             //
-            // It appears that the numbers are measured in *watts*. 40000 watts is, according to Google, the average battery size
+            // It appears that the numbers are measured in *watt-hours*. 40000 watt-hours is, according to Google, the average battery size
             int remaining = random.nextInt(40001);
             eventQueue.add(new ArrivalEvent(currentTime, random.nextDouble() < 0.67 ? "fast" : "slow",remaining,40000-remaining,40000));
         }

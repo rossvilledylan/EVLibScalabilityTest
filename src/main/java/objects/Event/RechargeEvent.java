@@ -14,7 +14,7 @@ public class RechargeEvent implements Event{
     /**
      * Constructor for a Recharge Event.
      * @param stamp the time a Recharge Event takes place.
-     * @param charges the array of values, in watts, which are used to refill the station's array of sources of energy.
+     * @param charges the array of values, in watt-hours, which are used to refill the station's array of sources of energy.
      */
     public RechargeEvent(Instant stamp, double[] charges){
         this.timestamp = stamp;
@@ -26,7 +26,7 @@ public class RechargeEvent implements Event{
     }
 
     /**
-     * @return the array of values, in watts, which are used to refill the station's array of sources of energy.
+     * @return the array of values, in watt-hours, which are used to refill the station's array of sources of energy.
      */
     public double[] getCharges(){
         return charges;

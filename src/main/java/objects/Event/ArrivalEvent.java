@@ -19,9 +19,9 @@ public class ArrivalEvent implements Event {
      * no function otherwise.
      * @param stamp the time that a car arrives at the station.
      * @param chargeType the type of charge that a car desires, either "fast" or "slow".
-     * @param remainingAmount the remaining amount of energy in the car's battery, measured in watts.
-     * @param desireAmount the amount of energy the car wants from the Station it has arrived at, measured in watts.
-     * @param capacityAmount the maximum amount of energy the car can hold, measured in watts.
+     * @param remainingAmount the remaining amount of energy in the car's battery, measured in watt-hours.
+     * @param desireAmount the amount of energy the car wants from the Station it has arrived at, measured in watt-hours.
+     * @param capacityAmount the maximum amount of energy the car can hold, measured in watt-hours.
      */
     public ArrivalEvent(Instant stamp, String chargeType, int remainingAmount, int desireAmount, int capacityAmount){
         this.timestamp = stamp;
@@ -48,7 +48,7 @@ public class ArrivalEvent implements Event {
      */
     public ElectricVehicle getVeh() { return this.veh; }
     /**
-     * @return the amount of energy the car wants from the Station it has arrived at, measured in watts.
+     * @return the amount of energy the car wants from the Station it has arrived at, measured in watt-hours.
      */
     public int getChargeDesired() { return this.chargeDesired; }
 }
