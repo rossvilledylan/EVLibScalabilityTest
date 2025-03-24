@@ -78,7 +78,7 @@ public class Main {
             }
             long pDuration = endTime-startTime;
             FileWriter writer = new FileWriter("simulatorReport.txt");
-            writer.write("The Serial Version took " + serialDuration + " nanoseconds\n");
+            //writer.write("The Serial Version took " + serialDuration + " nanoseconds\n");
             writer.write("The Parallel Version took " + pDuration + " nanoseconds");
             writer.close();
             float time = (float) pDuration / 1000000000;
