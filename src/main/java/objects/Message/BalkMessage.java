@@ -1,7 +1,6 @@
 package objects.Message;
 
 import objects.Event.ArrivalEvent;
-import objects.Event.BalkEvent;
 
 import java.time.Instant;
 
@@ -15,7 +14,7 @@ import java.time.Instant;
 public class BalkMessage implements Message{
     private final Instant timestamp;
     private final String sender;
-    private final BalkEvent eventToLeave;
+    private final ArrivalEvent eventToLeave;
     private final boolean retread; //This boolean is set to 0 if an event is leaving the station for the first time; it is set to 1 if the event is already at another station and needs to be backtracked to and removed from that station's eventQueue
 
     /**
@@ -27,7 +26,7 @@ public class BalkMessage implements Message{
      *          a record of a previous message that Balked and informing the Monitor to tell the Station that Event went to
      *          to backtrack, true.
      */
-    public BalkMessage(Instant i, String s, BalkEvent a, boolean b){
+    public BalkMessage(Instant i, String s, ArrivalEvent a, boolean b){
         this.timestamp = i;
         this.sender = s;
         this.eventToLeave = a;
@@ -44,7 +43,7 @@ public class BalkMessage implements Message{
     /**
      * @return the Arrival Event that has decided to leave the Station.
      */
-    public BalkEvent getEventToLeave(){
+    public ArrivalEvent getEventToLeave(){
         return this.eventToLeave;
     }
 

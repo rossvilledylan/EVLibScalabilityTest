@@ -2,7 +2,6 @@ package execution;
 
 import objects.*;
 import objects.Event.ArrivalEvent;
-import objects.Event.BalkEvent;
 import objects.Message.BalkMessage;
 import objects.Message.EndMessage;
 import objects.Message.Message;
@@ -25,7 +24,7 @@ public class Monitor {
     private final BlockingQueue<Message> stationToMonitorQueue;
     private final ConcurrentHashMap<String, BlockingQueue<Message>> monitorToStationQueues;
     private final HashMap<String, Instant> stationTimesheet;
-    private final HashMap<BalkEvent, String> eventMapping; //This hashmap tracks where *arrival events* specifically are sent when a balk message is received.
+    private final HashMap<ArrivalEvent, String> eventMapping; //This hashmap tracks where *arrival events* specifically are sent when a balk message is received.
     private static final ThreadLocalRandom random = ThreadLocalRandom.current();
 
     /**

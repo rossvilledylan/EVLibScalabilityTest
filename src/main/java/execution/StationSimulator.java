@@ -335,10 +335,8 @@ public class StationSimulator {
                 //This if statement is an "impatience" function that balks at 10 minutes
                 ArrivalEvent a = fastQueue.peek();
                 while(!fastQueue.isEmpty() && !a.getTimestamp().plusSeconds(600).isAfter(this.stationTime)) {
-                    a = slowQueue.remove();
-                    BalkEvent b = new BalkEvent(this.stationTime,a);
-                    stationToMonitorQueue.add(new BalkMessage(this.stationTime,this.stationName,b,false));
-                    historyQueue.add(b); //Add this event to the history queue as an event that left the station
+                    stationToMonitorQueue.add(new BalkMessage(this.stationTime,this.stationName,fastQueue.remove(),false));
+                    historyQueue.add(new BalkEvent(this.stationTime, a)); //Add this event to the history queue as an event that left the station
                     sS.setNumFaskBalks(sS.getNumFaskBalks() + 1);
                     if(!fastQueue.isEmpty()){
                         a = fastQueue.peek();
@@ -367,10 +365,8 @@ public class StationSimulator {
                 // Take an event off the slow queue and put it on the charger
                 ArrivalEvent a = slowQueue.peek(); // Peek to check the head without removing it
                 while (!slowQueue.isEmpty() && !a.getTimestamp().plusSeconds(1800).isAfter(this.stationTime)) {
-                    a = slowQueue.remove();
-                    BalkEvent b = new BalkEvent(this.stationTime, a);
-                    stationToMonitorQueue.add(new BalkMessage(this.stationTime,this.stationName,b, false));
-                    historyQueue.add(b); //Add this event to the history queue as an event that left the station
+                    stationToMonitorQueue.add(new BalkMessage(this.stationTime,this.stationName,slowQueue.remove(), false));
+                    historyQueue.add(new BalkEvent(this.stationTime, a)); //Add this event to the history queue as an event that left the station
                     sS.setNumSlowBalks(sS.getNumSlowBalks()+1);
                     if (!slowQueue.isEmpty()) {
                         a = slowQueue.peek(); // Update 'a' with the next event
@@ -491,7 +487,7 @@ public class StationSimulator {
      */
     public void backtrack(BalkMessage balker){
         try {
-            Instant rewind = balker.getEventToLeave().getEventToLeave().getTimestamp();
+            Instant rewind = balker.getEventToLeave().getTimestamp();
             //We will have to go through the fastQueue, the slowQueue, and the history queue to add events back to the eventQueue.
             //Do fast and slow queues first, they are shorter by design
             PriorityQueue<ArrivalEvent> temporary = new PriorityQueue<>(
@@ -528,9 +524,9 @@ public class StationSimulator {
                     if (a instanceof ArrivalEvent) {
                         eventQueue.add(a);
                     } else if (a instanceof BalkEvent) {
-                        monitortoStationQueue.add(new BalkMessage(a.getTimestamp(),this.stationName, (BalkEvent) a,true));
-                        if(this.stationName.equals("Station B"))
-                            System.out.println("B\n" + "Balking Event: " + ((BalkEvent) a) + "\nArrival Event: " + ((BalkEvent) a).getEventToLeave());
+                        monitortoStationQueue.add(new BalkMessage(a.getTimestamp(),this.stationName,((BalkEvent) a).getEventToLeave(),true));
+                        //if(this.stationName.equals("Station B"))
+                            //System.out.println("B\n" + "Balking Event: " + ((BalkEvent) a) + "\nArrival Event: " + ((BalkEvent) a).getEventToLeave());
                     }
                     if (!historyQueue.isEmpty())
                         a = historyQueue.peek();
@@ -543,21 +539,27 @@ public class StationSimulator {
             //Else, add the event to the queue, as it is an event
             if(balker.getRetread()) {
                 if(this.stationName.equals("Station A")) {
-                    System.out.println("A\n" + "Balking Event: " + balker.getEventToLeave() + "\nArrival Event: " + balker.getEventToLeave().getEventToLeave());
-                    System.out.println("The Event Queue Pre:\n" + eventQueue);
-                    if(eventQueue.remove(balker.getEventToLeave().getEventToLeave()))
-                        System.out.println("The Event Queue After:\n" + eventQueue);
-                    System.out.println("The History Queue Pre:\n" + historyQueue);
+                    //System.out.println("A\n" + "Balking Event: " + balker.getEventToLeave() + "\nArrival Event: " + balker.getEventToLeave());
+                    //System.out.println("The Event Queue Pre:\n" + eventQueue);
+                    if(eventQueue.remove(balker.getEventToLeave()))
+                        System.out.println();
+                        //System.out.println("The Event Queue After:\n" + eventQueue);
+                    //System.out.println("The History Queue Pre:\n" + historyQueue);
                     if(historyQueue.remove(balker.getEventToLeave()))
-                        System.out.println("The History Queue After:\n" + historyQueue);
+                        System.out.println();
+                        //System.out.println("The History Queue After:\n" + historyQueue);
                 }
                 else {
                     eventQueue.remove(balker.getEventToLeave());
-                    historyQueue.remove(balker.getEventToLeave().getEventToLeave());
+                    historyQueue.remove(balker.getEventToLeave());
                 }
             }
             else {
-                eventQueue.add(balker.getEventToLeave().getEventToLeave()); //Make sure the traveling message is put on the queue
+                if(this.stationName.equals("Station A"))
+                    System.out.println("Event I.D.: " + balker.getEventToLeave() + "\nEvent Queue Before: " + eventQueue);
+                eventQueue.add(balker.getEventToLeave()); //Make sure the traveling message is put on the queue
+                if(this.stationName.equals("Station A"))
+                    System.out.println("Event Queue After: " + eventQueue);
             }
             //Now we have to make sure the number of slots in use is consistent for the time we are backtracking to
             //The idea is that any Departure events that exist in the eventQueue before the incoming time
@@ -579,6 +581,8 @@ public class StationSimulator {
                     }
                 }
             }
+            if(stationName.equals("Station A"))
+                System.out.println("Event Queue After After: " + eventQueue);
             historyQueue.removeIf(ArrivalEvent -> ArrivalEvent.getTimestamp().isBefore(gT.getGlobalMinimumTime())); //remove previous events before global min time
         }catch(Exception e){
             System.out.println(stationName + " " + e);
